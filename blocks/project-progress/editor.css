@@ -1,0 +1,12 @@
+.pronti-qua-project-progress .components-placeholder {
+    background: var(--wp--preset--color--light, #f8fafc);
+    border: 2px dashed #e5e7eb;
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.block-editor-block-list__block[data-type="pronti-qua/project-progress"]:hover {
+    outline: 2px solid var(--wp--preset--color--verde-primario, #6f8a2b);
+    outline-offset: 2px;
+}

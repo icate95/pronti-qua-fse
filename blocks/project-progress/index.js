@@ -16,78 +16,91 @@ registerBlockType('pronti-qua/project-progress', {
 		} = attributes;
 
 		const blockProps = useBlockProps({
-			className: `pronti-qua-codice-5x1000 codice-style-${style}`
+			className: 'pronti-qua-project-progress'
 		});
 
-		const styleOptions = [
-			{ label: __('Card', 'pronti-qua'), value: 'card' },
-			{ label: __('Banner', 'pronti-qua'), value: 'banner' },
-			{ label: __('Minimale', 'pronti-qua'), value: 'minimal' }
-		];
+		const percentage = targetAmount > 0 ? Math.round((currentAmount / targetAmount) * 100) : 0;
 
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title={__('Impostazioni 5x1000', 'pronti-qua')}>
+					<PanelBody title={__('Impostazioni Progetto', 'pronti-qua')}>
 						<TextControl
-							label={__('Codice Fiscale', 'pronti-qua')}
-							value={codiceFiscale}
-							onChange={(value) => setAttributes({ codiceFiscale: value })}
-							help={__('Inserisci il codice fiscale dell\'associazione', 'pronti-qua')}
+							label={__('Titolo Progetto', 'pronti-qua')}
+							value={projectTitle}
+							onChange={(value) => setAttributes({ projectTitle: value })}
 						/>
-						<SelectControl
-							label={__('Stile', 'pronti-qua')}
-							value={style}
-							options={styleOptions}
-							onChange={(value) => setAttributes({ style: value })}
+						<RangeControl
+							label={__('Importo Raccolto', 'pronti-qua')}
+							value={currentAmount}
+							onChange={(value) => setAttributes({ currentAmount: value })}
+							min={0}
+							max={targetAmount || 100000}
+							step={100}
+						/>
+						<RangeControl
+							label={__('Obiettivo', 'pronti-qua')}
+							value={targetAmount}
+							onChange={(value) => setAttributes({ targetAmount: value })}
+							min={1000}
+							max={500000}
+							step={1000}
+						/>
+						<TextControl
+							label={__('Valuta', 'pronti-qua')}
+							value={currency}
+							onChange={(value) => setAttributes({ currency: value })}
 						/>
 						<ToggleControl
-							label={__('Mostra Pulsante Copia', 'pronti-qua')}
-							checked={showCopyButton}
-							onChange={(value) => setAttributes({ showCopyButton: value })}
+							label={__('Mostra Percentuale', 'pronti-qua')}
+							checked={showPercentage}
+							onChange={(value) => setAttributes({ showPercentage: value })}
+						/>
+					</PanelBody>
+
+					<PanelBody title={__('Colori', 'pronti-qua')} initialOpen={false}>
+						<label>{__('Colore Barra', 'pronti-qua')}</label>
+						<ColorPicker
+							color={barColor}
+							onChange={(value) => setAttributes({ barColor: value })}
+						/>
+						<br /><br />
+						<label>{__('Colore Sfondo', 'pronti-qua')}</label>
+						<ColorPicker
+							color={backgroundColor}
+							onChange={(value) => setAttributes({ backgroundColor: value })}
 						/>
 					</PanelBody>
 				</InspectorControls>
 
 				<div {...blockProps}>
-					<div className="codice-5x1000-container">
-						<div className="codice-header">
-							<RichText
-								tagName="h3"
-								placeholder={__('Titolo...', 'pronti-qua')}
-								value={title}
-								onChange={(value) => setAttributes({ title: value })}
-								className="codice-title"
-							/>
-
-							<RichText
-								tagName="p"
-								placeholder={__('Descrizione...', 'pronti-qua')}
-								value={description}
-								onChange={(value) => setAttributes({ description: value })}
-								className="codice-description"
-							/>
-						</div>
-
-						<div className="codice-display">
-							<div className="codice-label">Codice Fiscale:</div>
-							<div className="codice-number">{codiceFiscale}</div>
-
-							{showCopyButton && (
-								<button
-									className="codice-copy-btn"
-									onClick={(e) => e.preventDefault()}
-								>
-									📋 Copia
-								</button>
-							)}
-						</div>
-
-						{style !== 'minimal' && (
-							<div className="codice-instructions">
-								<p>Inserisci questo codice nel riquadro <strong>"Sostegno del volontariato"</strong> della tua dichiarazione dei redditi</p>
-							</div>
+					<div className="project-progress-header">
+						<h3 className="project-title">{projectTitle}</h3>
+						{showPercentage && (
+							<span className="project-percentage">{percentage}%</span>
 						)}
+					</div>
+
+					<div className="project-amounts">
+                        <span className="current-amount">
+                            {currency}{currentAmount.toLocaleString()}
+                        </span>
+						<span className="target-amount">
+                            {__('di', 'pronti-qua')} {currency}{targetAmount.toLocaleString()}
+                        </span>
+					</div>
+
+					<div
+						className="progress-bar-container"
+						style={{ backgroundColor }}
+					>
+						<div
+							className="progress-bar-fill"
+							style={{
+								width: `${Math.min(percentage, 100)}%`,
+								backgroundColor: barColor
+							}}
+						/>
 					</div>
 				</div>
 			</>
@@ -96,53 +109,50 @@ registerBlockType('pronti-qua/project-progress', {
 
 	save: ({ attributes }) => {
 		const {
-			codiceFiscale,
-			title,
-			description,
-			showCopyButton,
-			style
+			projectTitle,
+			currentAmount,
+			targetAmount,
+			currency,
+			showPercentage,
+			barColor,
+			backgroundColor
 		} = attributes;
 
 		const blockProps = useBlockProps.save({
-			className: `pronti-qua-codice-5x1000 codice-style-${style}`
+			className: 'pronti-qua-project-progress'
 		});
+
+		const percentage = targetAmount > 0 ? Math.round((currentAmount / targetAmount) * 100) : 0;
 
 		return (
 			<div {...blockProps}>
-				<div className="codice-5x1000-container">
-					<div className="codice-header">
-						<RichText.Content
-							tagName="h3"
-							value={title}
-							className="codice-title"
-						/>
-
-						<RichText.Content
-							tagName="p"
-							value={description}
-							className="codice-description"
-						/>
-					</div>
-
-					<div className="codice-display">
-						<div className="codice-label">Codice Fiscale:</div>
-						<div className="codice-number" data-codice={codiceFiscale}>{codiceFiscale}</div>
-
-						{showCopyButton && (
-							<button
-								className="codice-copy-btn"
-								data-copy-text={codiceFiscale}
-							>
-								📋 Copia
-							</button>
-						)}
-					</div>
-
-					{style !== 'minimal' && (
-						<div className="codice-instructions">
-							<p>Inserisci questo codice nel riquadro <strong>"Sostegno del volontariato"</strong> della tua dichiarazione dei redditi</p>
-						</div>
+				<div className="project-progress-header">
+					<h3 className="project-title">{projectTitle}</h3>
+					{showPercentage && (
+						<span className="project-percentage">{percentage}%</span>
 					)}
+				</div>
+
+				<div className="project-amounts">
+                    <span className="current-amount">
+                        {currency}{currentAmount.toLocaleString()}
+                    </span>
+					<span className="target-amount">
+                        di {currency}{targetAmount.toLocaleString()}
+                    </span>
+				</div>
+
+				<div
+					className="progress-bar-container"
+					style={{ backgroundColor }}
+				>
+					<div
+						className="progress-bar-fill"
+						style={{
+							width: `${Math.min(percentage, 100)}%`,
+							backgroundColor: barColor
+						}}
+					/>
 				</div>
 			</div>
 		);

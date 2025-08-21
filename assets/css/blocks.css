@@ -1,0 +1,23 @@
+/* Frontend styles for all blocks */
+@import url('../../blocks/project-progress/style.css');
+@import url('../../blocks/impact-counter/style.css');
+@import url('../../blocks/testimonial/style.css');
+@import url('../../blocks/team-member/style.css');
+@import url('../../blocks/alert-banner/style.css');
+@import url('../../blocks/codice-5x1000/style.css');
+
+/* Common block styles */
+.wp-block[data-type*="pronti-qua/"] {
+    margin: 16px 0;
+}
+
+/* Focus states for all custom blocks */
+.pronti-qua-project-progress:focus-within,
+.pronti-qua-impact-counter:focus-within,
+.pronti-qua-testimonial:focus-within,
+.pronti-qua-team-member:focus-within,
+.pronti-qua-alert-banner:focus-within,
+.pronti-qua-codice-5x1000:focus-within {
+    outline: 2px solid var(--wp--preset--color--azzurro-secondario, #379db2);
+    outline-offset: 2px;
+}

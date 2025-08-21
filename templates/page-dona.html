@@ -1,0 +1,116 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","layout":{"type":"constrained"}} -->
+<main class="wp-block-group">
+    <!-- wp:cover {"gradient":"verde-azzurro","minHeight":400,"contentPosition":"center center","align":"full","style":{"spacing":{"padding":{"top":"60px","bottom":"60px"}}}} -->
+    <div class="wp-block-cover alignfull" style="padding-top:60px;padding-bottom:60px;min-height:400px">
+        <span aria-hidden="true" class="wp-block-cover__background has-verde-azzurro-gradient-background has-background-dim-100 has-background-dim">
+
+               <!-- wp:separator {"style":{"spacing":{"margin":{"top":"24px","bottom":"24px"}}}} -->
+            <hr class="wp-block-separator" style="margin-top:24px;margin-bottom:24px"/>
+            <!-- /wp:separator -->
+
+            <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
+            <div class="wp-block-buttons">
+                <!-- wp:button {"backgroundColor":"azzurro-secondario","style":{"border":{"radius":"8px"}},"fontSize":"medium","width":100} -->
+                <div class="wp-block-button has-custom-width wp-block-button__width-100 has-custom-font-size has-medium-font-size">
+                    <a class="wp-block-button__link has-azzurro-secondario-background-color has-background wp-element-button" style="border-radius:8px">🎫 Iscriviti all'Evento</a>
+                </div>
+                <!-- /wp:button -->
+            </div>
+            <!-- /wp:buttons -->
+
+            <!-- wp:paragraph {"align":"center","fontSize":"small","style":{"spacing":{"margin":{"top":"12px"}}}} -->
+            <p class="has-text-align-center has-small-font-size" style="margin-top:12px">Iscrizione gratuita ma obbligatoria</p>
+            <!-- /wp:paragraph -->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- wp:group {"backgroundColor":"white","style":{"spacing":{"padding":{"top":"24px","bottom":"24px","left":"24px","right":"24px"},"margin":{"top":"24px"}},"border":{"radius":"12px","width":"1px","color":"#e5e7eb"}},"layout":{"type":"constrained"}} -->
+    <div class="wp-block-group has-border-color has-white-background-color has-background" style="border-color:#e5e7eb;border-width:1px;border-radius:12px;margin-top:24px;padding-top:24px;padding-right:24px;padding-bottom:24px;padding-left:24px">
+        <!-- wp:heading {"level":3,"fontSize":"medium","textColor":"rosa-accento","style":{"spacing":{"margin":{"bottom":"16px"}}}} -->
+        <h3 class="wp-block-heading has-rosa-accento-color has-text-color has-medium-font-size" style="margin-bottom:16px">👤 Relatore</h3>
+        <!-- /wp:heading -->
+
+        <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"top"},"style":{"spacing":{"blockGap":"16px"}}} -->
+        <div class="wp-block-group">
+            <!-- wp:image {"width":"60px","height":"60px","scale":"cover","style":{"border":{"radius":"50%"}}} -->
+            <figure class="wp-block-image is-resized"><img alt="" style="border-radius:50%;object-fit:cover;width:60px;height:60px"/></figure>
+            <!-- /wp:image -->
+
+            <!-- wp:group {"layout":{"type":"constrained"}} -->
+            <div class="wp-block-group">
+                <!-- wp:paragraph {"fontSize":"small","style":{"spacing":{"margin":{"bottom":"4px"}}}} -->
+                <p class="has-small-font-size" style="margin-bottom:4px"><strong>Dr.ssa Maria Rossi</strong></p>
+                <!-- /wp:paragraph -->
+                <!-- wp:paragraph {"fontSize":"small"} -->
+                <p class="has-small-font-size">Psicologa specialista in oncologia, 15 anni di esperienza nel supporto ai pazienti.</p>
+                <!-- /wp:paragraph -->
+            </div>
+            <!-- /wp:group -->
+        </div>
+        <!-- /wp:group -->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- wp:group {"backgroundColor":"light","style":{"spacing":{"padding":{"top":"20px","bottom":"20px","left":"20px","right":"20px"},"margin":{"top":"24px"}},"border":{"radius":"8px"}},"layout":{"type":"constrained"}} -->
+    <div class="wp-block-group has-light-background-color has-background" style="border-radius:8px;margin-top:24px;padding-top:20px;padding-right:20px;padding-bottom:20px;padding-left:20px">
+        <!-- wp:heading {"level":3,"fontSize":"small","textColor":"azzurro-secondario","style":{"spacing":{"margin":{"bottom":"12px"}}}} -->
+        <h3 class="wp-block-heading has-azzurro-secondario-color has-text-color has-small-font-size" style="margin-bottom:12px">📧 Condividi l'Evento</h3>
+        <!-- /wp:heading -->
+
+        <!-- wp:social-links {"size":"has-small-icon-size","className":"is-style-logos-only","layout":{"type":"flex","justifyContent":"center"}} -->
+        <ul class="wp-block-social-links has-small-icon-size is-style-logos-only">
+            <!-- wp:social-link {"url":"#","service":"facebook"} /-->
+            <!-- wp:social-link {"url":"#","service":"twitter"} /-->
+            <!-- wp:social-link {"url":"#","service":"whatsapp"} /-->
+            <!-- wp:social-link {"url":"#","service":"linkedin"} /-->
+        </ul>
+        <!-- /wp:social-links -->
+    </div>
+    <!-- /wp:group -->
+    </div>
+    <!-- /wp:column -->
+    </div>
+    <!-- /wp:columns -->
+
+    <!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"80px"}}},"layout":{"type":"constrained"}} -->
+    <div class="wp-block-group alignwide" style="margin-top:80px">
+        <!-- wp:heading {"textAlign":"center","fontSize":"x-large","textColor":"verde-primario","style":{"spacing":{"margin":{"bottom":"32px"}}}} -->
+        <h2 class="wp-block-heading has-text-align-center has-verde-primario-color has-text-color has-x-large-font-size" style="margin-bottom:32px">Altri Eventi in Programma</h2>
+        <!-- /wp:heading -->
+
+        <!-- wp:query {"queryId":1,"query":{"perPage":3,"pages":0,"offset":0,"postType":"evento","order":"asc","orderBy":"meta_value","author":"","search":"","exclude":[],"sticky":"","inherit":false,"meta_key":"event_date"}} -->
+        <div class="wp-block-query">
+            <!-- wp:post-template {"layout":{"type":"grid","columnCount":3}} -->
+            <!-- wp:group {"backgroundColor":"white","style":{"spacing":{"padding":{"top":"0px","bottom":"24px","left":"0px","right":"0px"}},"border":{"radius":"12px","width":"1px","color":"#e5e7eb"}},"layout":{"type":"constrained"}} -->
+            <div class="wp-block-group has-border-color has-white-background-color has-background" style="border-color:#e5e7eb;border-width:1px;border-radius:12px;padding-top:0px;padding-right:0px;padding-bottom:24px;padding-left:0px">
+                <!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9","style":{"border":{"radius":{"topLeft":"12px","topRight":"12px"}}}} /-->
+
+                <!-- wp:group {"style":{"spacing":{"padding":{"left":"20px","right":"20px","top":"16px","bottom":"0px"}}},"layout":{"type":"constrained"}} -->
+                <div class="wp-block-group" style="padding-top:16px;padding-right:20px;padding-bottom:0px;padding-left:20px">
+                    <!-- wp:post-title {"isLink":true,"level":4,"fontSize":"medium","textColor":"azzurro-secondario"} /-->
+                    <!-- wp:post-excerpt {"moreText":"Scopri di più →","fontSize":"small"} /-->
+
+                    <!-- wp:group {"style":{"spacing":{"margin":{"top":"12px"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"},"fontSize":"small"} -->
+                    <div class="wp-block-group has-small-font-size" style="margin-top:12px">
+                        <!-- wp:paragraph {"style":{"color":{"text":"#059669"}}} -->
+                        <p class="has-text-color" style="color:#059669">📅 28 Marzo</p>
+                        <!-- /wp:paragraph -->
+                        <!-- wp:paragraph {"style":{"color":{"text":"#6b7280"}}} -->
+                        <p class="has-text-color" style="color:#6b7280">• 16:00</p>
+                        <!-- /wp:paragraph -->
+                    </div>
+                    <!-- /wp:group -->
+                </div>
+                <!-- /wp:group -->
+            </div>
+            <!-- /wp:group -->
+            <!-- /wp:post-template -->
+        </div>
+        <!-- /wp:query -->
+    </div>
+    <!-- /wp:group -->
+</main>
+<!-- /wp:group -->
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

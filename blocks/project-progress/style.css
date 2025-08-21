@@ -1,0 +1,88 @@
+.pronti-qua-project-progress {
+    padding: 24px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    margin: 16px 0;
+}
+
+.project-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.project-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--wp--preset--color--verde-primario, #6f8a2b);
+}
+
+.project-percentage {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--wp--preset--color--azzurro-secondario, #379db2);
+}
+
+.project-amounts {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 0.875rem;
+}
+
+.current-amount {
+    font-weight: 600;
+    color: var(--wp--preset--color--verde-primario, #6f8a2b);
+}
+
+.target-amount {
+    color: #6b7280;
+}
+
+.progress-bar-container {
+    height: 12px;
+    background-color: #f8fafc;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: #379db2;
+    border-radius: 6px;
+    transition: width 0.8s ease-out;
+    position: relative;
+}
+
+.progress-bar-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@media (max-width: 768px) {
+    .project-progress-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .project-amounts {
+        flex-direction: column;
+        gap: 4px;
+    }
+}
