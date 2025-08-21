@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "pronti-qua/project-progress",
+  "title": "Progress Bar Progetto",
+  "category": "pronti-qua",
+  "icon": "chart-bar",
+  "description": "Barra di progresso per raccolta fondi progetti",
+  "keywords": ["progresso", "raccolta", "fondi", "progetto"],
+  "textdomain": "pronti-qua",
+  "attributes": {
+    "projectTitle": {
+      "type": "string",
+      "default": "Nome Progetto"
+    },
+    "currentAmount": {
+      "type": "number",
+      "default": 0
+    },
+    "targetAmount": {
+      "type": "number",
+      "default": 10000
+    },
+    "currency": {
+      "type": "string",
+      "default": "€"
+    },
+    "showPercentage": {
+      "type": "boolean",
+      "default": true
+    },
+    "barColor": {
+      "type": "string",
+      "default": "#379db2"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#f8fafc"
+    }
+  },
+  "supports": {
+    "align": ["wide", "full"],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./editor.css",
+  "style": "file:./style.css"
+}

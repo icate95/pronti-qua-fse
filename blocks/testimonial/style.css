@@ -1,0 +1,138 @@
+.pronti-qua-testimonial {
+    margin: 32px 0;
+    padding: 32px;
+    background: white;
+    border-radius: 12px;
+    position: relative;
+}
+
+/* Card Style */
+.testimonial-style-card {
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.testimonial-style-card::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-size: 4rem;
+    color: var(--wp--preset--color--azzurro-secondario, #379db2);
+    line-height: 1;
+    font-family: Georgia, serif;
+}
+
+/* Quote Style */
+.testimonial-style-quote {
+    border-left: 4px solid var(--wp--preset--color--verde-primario, #6f8a2b);
+    background: var(--wp--preset--color--light, #f8fafc);
+    padding-left: 40px;
+}
+
+.testimonial-style-quote .testimonial-text {
+    font-style: italic;
+    font-size: 1.125rem;
+}
+
+/* Minimal Style */
+.testimonial-style-minimal {
+    background: transparent;
+    padding: 16px 0;
+    border: none;
+    text-align: center;
+}
+
+.testimonial-content {
+    margin-bottom: 24px;
+}
+
+.testimonial-text {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--wp--preset--color--dark, #1f2937);
+    margin: 0;
+    quotes: """ """ "'" "'";
+}
+
+.testimonial-text::before {
+    content: open-quote;
+    color: var(--wp--preset--color--azzurro-secondario, #379db2);
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.testimonial-text::after {
+    content: close-quote;
+    color: var(--wp--preset--color--azzurro-secondario, #379db2);
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.author-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.author-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.author-info {
+    flex: 1;
+}
+
+.author-name {
+    font-weight: 600;
+    color: var(--wp--preset--color--verde-primario, #6f8a2b);
+    margin-bottom: 4px;
+}
+
+.author-role {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .pronti-qua-testimonial {
+        padding: 24px 16px;
+        margin: 24px 0;
+    }
+
+    .testimonial-style-card::before {
+        font-size: 3rem;
+        top: -5px;
+        left: 16px;
+    }
+
+    .testimonial-style-quote {
+        padding-left: 24px;
+    }
+
+    .testimonial-text {
+        font-size: 1rem;
+    }
+
+    .testimonial-author {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+
+    .author-image {
+        width: 50px;
+        height: 50px;
+    }
+}

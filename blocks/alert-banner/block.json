@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "pronti-qua/alert-banner",
+  "title": "Banner Alert",
+  "category": "pronti-qua",
+  "icon": "warning",
+  "description": "Banner per comunicazioni importanti e urgenti",
+  "keywords": ["alert", "banner", "comunicazione", "urgente"],
+  "textdomain": "pronti-qua",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Comunicazione Importante"
+    },
+    "content": {
+      "type": "string",
+      "default": "Inserisci qui il messaggio importante..."
+    },
+    "alertType": {
+      "type": "string",
+      "default": "info",
+      "enum": ["info", "warning", "success", "error", "emergency"]
+    },
+    "showIcon": {
+      "type": "boolean",
+      "default": true
+    },
+    "isDismissible": {
+      "type": "boolean",
+      "default": false
+    },
+    "buttonText": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "align": ["wide", "full"],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css"
+}

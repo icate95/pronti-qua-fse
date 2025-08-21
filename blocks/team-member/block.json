@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "pronti-qua/team-member",
+  "title": "Membro Team",
+  "category": "pronti-qua",
+  "icon": "admin-users",
+  "description": "Card per membro del team o volontario",
+  "keywords": ["team", "volontario", "staff", "persona"],
+  "textdomain": "pronti-qua",
+  "attributes": {
+    "name": {
+      "type": "string",
+      "default": "Nome Cognome"
+    },
+    "role": {
+      "type": "string",
+      "default": "Ruolo"
+    },
+    "bio": {
+      "type": "string",
+      "default": "Breve biografia della persona..."
+    },
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "email": {
+      "type": "string",
+      "default": ""
+    },
+    "phone": {
+      "type": "string",
+      "default": ""
+    },
+    "showContacts": {
+      "type": "boolean",
+      "default": false
+    },
+    "cardStyle": {
+      "type": "string",
+      "default": "standard",
+      "enum": ["standard", "compact", "detailed"]
+    }
+  },
+  "supports": {
+    "align": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css"
+}

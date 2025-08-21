@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "pronti-qua/impact-counter",
+  "title": "Contatore Impatto",
+  "category": "pronti-qua",
+  "icon": "plus",
+  "description": "Contatore animato per mostrare numeri di impatto",
+  "keywords": ["contatore", "numeri", "impatto", "statistiche"],
+  "textdomain": "pronti-qua",
+  "attributes": {
+    "number": {
+      "type": "number",
+      "default": 100
+    },
+    "label": {
+      "type": "string",
+      "default": "Famiglie supportate"
+    },
+    "suffix": {
+      "type": "string",
+      "default": "+"
+    },
+    "textColor": {
+      "type": "string",
+      "default": "#e66395"
+    },
+    "animationDuration": {
+      "type": "number",
+      "default": 2000
+    },
+    "fontSize": {
+      "type": "string",
+      "default": "xxx-large"
+    }
+  },
+  "supports": {
+    "align": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css"
+}

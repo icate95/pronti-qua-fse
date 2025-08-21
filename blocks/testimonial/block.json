@@ -1,0 +1,47 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "pronti-qua/testimonial",
+  "title": "Testimonianza",
+  "category": "pronti-qua",
+  "icon": "format-quote",
+  "description": "Blocco per testimonianze di pazienti e familiari",
+  "keywords": ["testimonianza", "citazione", "storia", "paziente"],
+  "textdomain": "pronti-qua",
+  "attributes": {
+    "content": {
+      "type": "string",
+      "default": "Inserisci qui il testo della testimonianza..."
+    },
+    "authorName": {
+      "type": "string",
+      "default": "Nome Autore"
+    },
+    "authorRole": {
+      "type": "string",
+      "default": "Paziente"
+    },
+    "isAnonymous": {
+      "type": "boolean",
+      "default": false
+    },
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "style": {
+      "type": "string",
+      "default": "card",
+      "enum": ["card", "quote", "minimal"]
+    }
+  },
+  "supports": {
+    "align": ["wide"],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css"
+}

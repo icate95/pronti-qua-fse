@@ -1,0 +1,497 @@
+/* ==========================================
+   PRONTI QUA - CODICE 5x1000 BLOCK STYLES
+   ========================================== */
+
+.pronti-qua-codice-5x1000 {
+    margin: 24px 0;
+    font-family: var(--wp--preset--font-family--inter, system-ui, sans-serif);
+}
+
+/* ==========================================================================
+   CONTAINER BASE
+   ========================================================================== */
+
+.codice-5x1000-container {
+    text-align: center;
+    position: relative;
+}
+
+/* ==========================================================================
+   HEADER SECTION
+   ========================================================================== */
+
+.codice-header {
+    margin-bottom: 32px;
+}
+
+.codice-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--wp--preset--color--verde-primario, #6f8a2b);
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+}
+
+.codice-description {
+    font-size: 1.125rem;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   CODICE DISPLAY SECTION
+   ========================================================================== */
+
+.codice-display {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 32px;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--wp--preset--color--giallo-highlight, #ded771);
+    border-radius: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.codice-display:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.codice-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #6b7280;
+    white-space: nowrap;
+}
+
+.codice-number {
+    font-size: 1.75rem;
+    font-weight: 700;
+    font-family: 'Courier New', 'SF Mono', Monaco, Inconsolata, 'Roboto Mono', monospace;
+    color: var(--wp--preset--color--verde-primario, #6f8a2b);
+    letter-spacing: 3px;
+    padding: 12px 20px;
+    background: var(--wp--preset--color--light, #f8fafc);
+    border-radius: 8px;
+    border: 2px solid #e5e7eb;
+    position: relative;
+    user-select: all;
+    cursor: text;
+}
+
+.codice-number::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    pointer-events: none;
+    border-radius: 6px;
+}
+
+.codice-copy-btn {
+    background: var(--wp--preset--color--azzurro-secondario, #379db2);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.codice-copy-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.codice-copy-btn:hover {
+    background: var(--wp--preset--color--verde-primario, #6f8a2b);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.codice-copy-btn:hover::before {
+    left: 100%;
+}
+
+.codice-copy-btn:active {
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   INSTRUCTIONS SECTION
+   ========================================================================== */
+
+.codice-instructions {
+    font-size: 0.9rem;
+    color: #6b7280;
+    max-width: 500px;
+    margin: 0 auto 24px;
+    line-height: 1.6;
+    padding: 16px 24px;
+    background: rgba(107, 114, 128, 0.05);
+    border-radius: 8px;
+    border-left: 4px solid var(--wp--preset--color--azzurro-secondario, #379db2);
+}
+
+.codice-instructions strong {
+    color: var(--wp--preset--color--verde-primario, #6f8a2b);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   BENEFITS SECTION (Banner style)
+   ========================================================================== */
+
+.codice-benefits {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: inherit;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.benefit-icon {
+    width: 18px;
+    height: 18px;
+    background: #22c55e;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   STYLE VARIANTS
+   ========================================================================== */
+
+/* Card Style */
+.codice-style-card .codice-5x1000-container {
+    background: var(--wp--preset--color--giallo-highlight, #ded771);
+    padding: 40px 32px;
+    border-radius: 20px;
+    color: var(--wp--preset--color--dark, #1f2937);
+    position: relative;
+    overflow: hidden;
+}
+
+.codice-style-card .codice-5x1000-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.codice-style-card .codice-title,
+.codice-style-card .codice-description {
+    color: inherit;
+}
+
+.codice-style-card .codice-display {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Banner Style */
+.codice-style-banner .codice-5x1000-container {
+    background: linear-gradient(135deg, var(--wp--preset--color--verde-primario, #6f8a2b) 0%, var(--wp--preset--color--azzurro-secondario, #379db2) 100%);
+    padding: 48px 40px;
+    border-radius: 16px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.codice-style-banner .codice-5x1000-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/><circle cx="10" cy="90" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    pointer-events: none;
+}
+
+.codice-style-banner .codice-title,
+.codice-style-banner .codice-description {
+    color: white;
+}
+
+.codice-style-banner .codice-display {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.codice-style-banner .codice-instructions {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    border-left-color: rgba(255, 255, 255, 0.3);
+}
+
+.codice-style-banner .codice-instructions strong {
+    color: white;
+}
+
+/* Minimal Style */
+.codice-style-minimal .codice-header {
+    margin-bottom: 20px;
+}
+
+.codice-style-minimal .codice-title {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+}
+
+.codice-style-minimal .codice-description {
+    font-size: 1rem;
+}
+
+.codice-style-minimal .codice-display {
+    padding: 16px 24px;
+    border: 1px solid #e5e7eb;
+    background: var(--wp--preset--color--light, #f8fafc);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.codice-style-minimal .codice-number {
+    font-size: 1.5rem;
+    padding: 8px 16px;
+}
+
+.codice-style-minimal .codice-copy-btn {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   COPY SUCCESS ANIMATION
+   ========================================================================== */
+
+.codice-copy-btn.copied {
+    background: #22c55e !important;
+    transform: scale(1.05);
+}
+
+.codice-copy-btn.copied::after {
+    content: ' ✓';
+    font-weight: bold;
+}
+
+/* Pulse animation for copied state */
+@keyframes copyPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.codice-copy-btn.copied {
+    animation: copyPulse 0.3s ease-out;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .pronti-qua-codice-5x1000 {
+        margin: 20px 0;
+    }
+
+    .codice-5x1000-container {
+        padding: 24px 16px !important;
+    }
+
+    .codice-style-card .codice-5x1000-container,
+    .codice-style-banner .codice-5x1000-container {
+        padding: 32px 20px !important;
+    }
+
+    .codice-header {
+        margin-bottom: 24px;
+    }
+
+    .codice-title {
+        font-size: 1.25rem;
+        margin-bottom: 8px;
+    }
+
+    .codice-description {
+        font-size: 1rem;
+    }
+
+    .codice-display {
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px 16px;
+        margin-bottom: 20px;
+    }
+
+    .codice-number {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        padding: 12px 16px;
+    }
+
+    .codice-copy-btn {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .codice-instructions {
+        padding: 12px 16px;
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+    }
+
+    .codice-benefits {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .benefit-item {
+        padding: 10px 20px;
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .codice-style-card .codice-5x1000-container,
+    .codice-style-banner .codice-5x1000-container {
+        padding: 24px 16px !important;
+        border-radius: 12px;
+    }
+
+    .codice-number {
+        font-size: 1.25rem;
+        letter-spacing: 1px;
+    }
+
+    .codice-display {
+        padding: 16px 12px;
+    }
+
+    .codice-title {
+        font-size: 1.125rem;
+    }
+
+    .codice-description {
+        font-size: 0.9rem;
+    }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY ENHANCEMENTS
+   ========================================================================== */
+
+.codice-copy-btn:focus {
+    outline: 2px solid var(--wp--preset--color--verde-primario, #6f8a2b);
+    outline-offset: 2px;
+}
+
+.codice-number:focus {
+    outline: 2px solid var(--wp--preset--color--azzurro-secondario, #379db2);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .codice-display {
+        border-width: 3px;
+    }
+
+    .codice-number {
+        border-width: 2px;
+    }
+
+    .codice-copy-btn {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .codice-display,
+    .codice-copy-btn,
+    .codice-number {
+        transition: none;
+    }
+
+    .codice-copy-btn::before {
+        display: none;
+    }
+
+    .codice-copy-btn.copied {
+        animation: none;
+    }
+}
+
+/* Print styles */
+@media print {
+    .pronti-qua-codice-5x1000 {
+        break-inside: avoid;
+        background: white !important;
+        color: black !important;
+    }
+
+    .codice-copy-btn {
+        display: none;
+    }
+
+    .codice-5x1000-container {
+        background: white !important;
+        border: 2px solid black !important;
+        border-radius: 0 !important;
+    }
+
+    .codice-number {
+        background: white !important;
+        color: black !important;
+        border: 1px solid black !important;
+    }
+}

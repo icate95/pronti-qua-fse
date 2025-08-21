@@ -1,0 +1,43 @@
+.pronti-qua-impact-counter {
+    text-align: center;
+    padding: 32px 16px;
+}
+
+.impact-counter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.impact-number {
+    font-weight: 700;
+    line-height: 1;
+    color: var(--wp--preset--color--rosa-accento, #e66395);
+    transition: transform 0.3s ease;
+}
+
+.impact-number:hover {
+    transform: scale(1.05);
+}
+
+.impact-label {
+    font-size: var(--wp--preset--font-size--medium, 18px);
+    font-weight: 500;
+    color: var(--wp--preset--color--dark, #1f2937);
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .pronti-qua-impact-counter {
+        padding: 24px 12px;
+    }
+
+    .impact-number {
+        font-size: 2.5rem !important;
+    }
+
+    .impact-label {
+        font-size: 1rem;
+    }
+}
