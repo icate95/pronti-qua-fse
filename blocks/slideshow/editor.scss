@@ -1,0 +1,182 @@
+/**
+ * Editor styles for Pronti Qua Slideshow Block
+ */
+
+.pronti-qua-slideshow-editor {
+  border: 2px dashed #e2e8f0;
+  border-radius: 8px;
+  padding: 20px;
+  background: #f8fafc;
+}
+
+.pronti-qua-slideshow-editor .slideshow-preview {
+  position: relative;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.pronti-qua-slideshow-editor .slide-navigation {
+  display: flex;
+  gap: 5px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid #e0e0e0;
+  flex-wrap: wrap;
+}
+
+.pronti-qua-slideshow-editor .slide-navigation .components-button {
+  min-height: 30px !important;
+  height: 30px !important;
+  padding: 0 12px !important;
+  font-size: 12px !important;
+  border-radius: 4px !important;
+}
+
+.pronti-qua-slideshow-editor .slide-navigation .components-button.is-primary {
+  background-color: #6f8a2b !important;
+  border-color: #6f8a2b !important;
+}
+
+.pronti-qua-slideshow-editor .slide-navigation .components-button.is-primary:hover {
+  background-color: #5a7022 !important;
+  border-color: #5a7022 !important;
+}
+
+.pronti-qua-slideshow-editor .slide-editor {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.pronti-qua-slideshow-editor .slide-editor h4 {
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.pronti-qua-slideshow-editor .components-text-control__input,
+.pronti-qua-slideshow-editor .components-textarea-control__input {
+  border-radius: 6px !important;
+  border: 1px solid #d1d5db !important;
+}
+
+.pronti-qua-slideshow-editor .components-text-control__input:focus,
+.pronti-qua-slideshow-editor .components-textarea-control__input:focus {
+  border-color: #6f8a2b !important;
+  box-shadow: 0 0 0 1px #6f8a2b !important;
+}
+
+.pronti-qua-slideshow-editor .components-select-control__input {
+  border-radius: 6px !important;
+  border: 1px solid #d1d5db !important;
+}
+
+.pronti-qua-slideshow-editor .components-select-control__input:focus {
+  border-color: #6f8a2b !important;
+  box-shadow: 0 0 0 1px #6f8a2b !important;
+}
+
+.pronti-qua-slideshow-editor .components-range-control {
+  margin-bottom: 16px;
+}
+
+.pronti-qua-slideshow-editor .components-range-control .components-range-control__slider {
+  color: #6f8a2b;
+}
+
+.pronti-qua-slideshow-editor .components-toggle-control {
+  margin-bottom: 16px;
+}
+
+.pronti-qua-slideshow-editor .components-toggle-control .components-form-toggle.is-checked .components-form-toggle__track {
+  background-color: #6f8a2b;
+}
+
+.pronti-qua-slideshow-editor .components-flex {
+  align-items: center;
+}
+
+.pronti-qua-slideshow-editor .components-button.is-secondary {
+  border-color: #6f8a2b;
+  color: #6f8a2b;
+}
+
+.pronti-qua-slideshow-editor .components-button.is-secondary:hover {
+  background-color: #6f8a2b;
+  color: white;
+}
+
+.pronti-qua-slideshow-editor .components-button.is-destructive {
+  border-color: #dc2626;
+  color: #dc2626;
+}
+
+.pronti-qua-slideshow-editor .components-button.is-destructive:hover {
+  background-color: #dc2626;
+  color: white;
+}
+
+/* Responsive per editor */
+@media (max-width: 768px) {
+  .pronti-qua-slideshow-editor {
+    padding: 15px;
+  }
+
+  .pronti-qua-slideshow-editor .slide-navigation {
+    gap: 3px;
+  }
+
+  .pronti-qua-slideshow-editor .slide-navigation .components-button {
+    font-size: 11px !important;
+    padding: 0 8px !important;
+  }
+
+  .pronti-qua-slideshow-editor .slide-editor {
+    padding: 15px;
+  }
+}
+
+/* Animazioni di feedback */
+.pronti-qua-slideshow-editor .slide-navigation .components-button {
+  transition: all 0.2s ease;
+}
+
+.pronti-qua-slideshow-editor .slide-navigation .components-button:hover {
+  transform: translateY(-1px);
+}
+
+.pronti-qua-slideshow-editor .slide-navigation .components-button:active {
+  transform: translateY(0);
+}
+
+/* Loading states */
+.pronti-qua-slideshow-editor .loading {
+  opacity: 0.6;
+  pointer-events: none;
+  position: relative;
+}
+
+.pronti-qua-slideshow-editor .loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid #6f8a2b;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}

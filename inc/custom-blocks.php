@@ -1,6 +1,6 @@
 <?php
 /**
- * Registrazione dei blocchi custom per Pronti Qua ODV
+ * Registrazione dei blocchi custom per Pronti Qua ODV - Versione Fallback
  */
 
 // Assicurati che non ci sia accesso diretto
@@ -9,369 +9,195 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Registra tutti i blocchi custom
+ * Registra il blocco slideshow con fallback PHP-only
  */
-function pronti_qua_register_custom_blocks() {
-    // Verifica se la funzione register_block_type esiste
-    if (!function_exists('register_block_type')) {
-        return;
+function pronti_qua_register_slideshow_fallback() {
+    register_block_type('pronti-qua/slideshow', array(
+        'title' => 'Slideshow Pronti Qua',
+        'description' => 'Slideshow automatico per mostrare progetti e servizi',
+        'category' => 'pronti-qua',
+        'icon' => 'slides',
+        'keywords' => array('slideshow', 'slider', 'pronti-qua'),
+        'supports' => array(
+            'align' => array('left', 'center', 'right', 'wide', 'full'),
+            'spacing' => array(
+                'margin' => true,
+                'padding' => true
+            )
+        ),
+        'attributes' => array(
+            'height' => array(
+                'type' => 'number',
+                'default' => 400
+            ),
+            'autoplay' => array(
+                'type' => 'boolean',
+                'default' => true
+            ),
+            'interval' => array(
+                'type' => 'number',
+                'default' => 4000
+            ),
+            'showIndicators' => array(
+                'type' => 'boolean',
+                'default' => true
+            )
+        ),
+        'render_callback' => 'pronti_qua_render_slideshow_fallback',
+        'editor_script' => null, // Nessun JavaScript complesso per l'editor
+        'editor_style' => null,
+        'style' => null
+    ));
+}
+add_action('init', 'pronti_qua_register_slideshow_fallback');
+
+/**
+ * Render del blocco slideshow
+ */
+function pronti_qua_render_slideshow_fallback($attributes, $content, $block) {
+    $height = $attributes['height'] ?? 400;
+    $autoplay = $attributes['autoplay'] ?? true;
+    $interval = $attributes['interval'] ?? 4000;
+    $showIndicators = $attributes['showIndicators'] ?? true;
+
+    // Ottieni l'URI del tema
+    $theme_uri = get_template_directory_uri();
+
+    // Slide predefinite ottimizzate
+    $slides = array(
+        array(
+            'title' => 'I nostri volontari',
+            'content' => 'Grazie ai volontari e a chi ci sostiene quotidianamente riusciamo ad ottenere grandi risultati',
+            'backgroundColor' => 'verde-primario',
+            'imageUrl' => $theme_uri . '/assets/img/slide-volontari.jpeg',
+            'imageAlt' => 'Gruppo di volontari dell\'associazione Pronti Qua durante un evento di solidarietà'
+        ),
+        array(
+            'title' => 'Supporto psicologico specializzato',
+            'content' => 'Professionisti qualificati accompagnano pazienti e famiglie nel percorso di cura',
+            'backgroundColor' => 'rosa-accento',
+            'imageUrl' => $theme_uri . '/assets/img/slide-supporto.jpeg',
+            'imageAlt' => 'Momento di racconto per facilitare la condivisione'
+        ),
+        array(
+            'title' => 'Le nostre raccolte fondi',
+            'content' => 'Eventi e mercatini per sostenere la ricerca e i progetti dell\'associazione',
+            'backgroundColor' => 'azzurro-secondario',
+            'imageUrl' => $theme_uri . '/assets/img/slide-mercatini.jpeg',
+            'imageAlt' => 'Mercatino natalizio e raccolta fondi dell\'associazione Pronti Qua'
+        ),
+        array(
+            'title' => 'Collaborazione con l\'Ospedale Santa Chiara',
+            'content' => 'Partnership strategica per migliorare l\'assistenza ai pazienti oncologici',
+            'backgroundColor' => 'giallo-highlight',
+            'imageUrl' => $theme_uri . '/assets/img/slide-medici.jpeg',
+            'imageAlt' => 'Équipe medica dell\'Ospedale Santa Chiara di Trento all\'annuale conferenza'
+        ),
+        array(
+            'title' => 'Sempre pronti per nuovi progetti',
+            'content' => 'Idee innovative al servizio di famiglie e pazienti in difficoltà',
+            'backgroundColor' => 'verde-primario',
+            'imageUrl' => $theme_uri . '/assets/img/slide-crav.jpeg',
+            'imageAlt' => 'Presentazione di nuovi progetti dell\'associazione Pronti Qua'
+            )
+    );
+
+    // Hook per personalizzare le slide
+    $slides = apply_filters('pronti_qua_slideshow_slides', $slides, $attributes);
+
+    if (empty($slides)) {
+        return '<div class="pronti-qua-slideshow"><p>Nessuna slide configurata.</p></div>';
     }
 
-    register_block_type(get_template_directory() . '/blocks/project-progress');
-    register_block_type(get_template_directory() . '/blocks/project-card');
-    register_block_type(get_template_directory() . '/blocks/impact-counter');
-    register_block_type(get_template_directory() . '/blocks/testimonial');
-    register_block_type(get_template_directory() . '/blocks/team-member');
-    register_block_type(get_template_directory() . '/blocks/alert-banner');
-    register_block_type(get_template_directory() . '/blocks/codice-5x1000');
-    register_block_type(get_template_directory() . '/blocks/slideshow');
+    // Genera l'output HTML
+    ob_start();
+    ?>
+    <div class="pronti-qua-slideshow">
+        <div class="slideshow-container"
+             style="height: <?php echo esc_attr($height); ?>px;"
+             data-autoplay="<?php echo $autoplay ? 'true' : 'false'; ?>"
+             data-interval="<?php echo esc_attr($interval); ?>"
+             data-show-indicators="<?php echo $showIndicators ? 'true' : 'false'; ?>">
 
-    $slideshow_path = get_template_directory() . '/blocks/slideshow';
-    error_log('Slideshow path: ' . $slideshow_path);
-        error_log('Block.json exists: ' . (file_exists($slideshow_path . '/block.json') ? 'YES' : 'NO'));
+            <?php foreach ($slides as $index => $slide): ?>
+                <div class="slide <?php echo $index === 0 ? 'active' : ''; ?> <?php echo !empty($slide['imageUrl']) ? 'has-background-image' : 'bg-' . esc_attr($slide['backgroundColor']); ?>"
+                     <?php if (!empty($slide['imageUrl'])): ?>
+                         style="background: url('<?php echo esc_url($slide['imageUrl']); ?>'); background-size: cover; background-position: center;"
+                     <?php endif; ?>>
+                </div>
+            <?php endforeach; ?>
 
+            <?php if ($showIndicators && count($slides) > 1): ?>
+                <div class="slideshow-indicators">
+                    <?php foreach ($slides as $index => $slide): ?>
+                        <button class="indicator <?php echo $index === 0 ? 'active' : ''; ?>"
+                                data-slide="<?php echo esc_attr($index); ?>"
+                                aria-label="<?php echo esc_attr(sprintf(__('Vai alla slide %d: %s', 'pronti-qua'), $index + 1, $slide['title'])); ?>"></button>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean();
 }
-add_action('init', 'pronti_qua_register_custom_blocks');
 
 /**
- * Enqueue block editor assets
+ * Enqueue CSS e JavaScript per il slideshow
  */
-function pronti_qua_enqueue_block_editor_assets() {
-    wp_enqueue_script(
-        'pronti-qua-blocks',
-        get_template_directory_uri() . '/assets/js/blocks.js',
-        array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n'),
-        wp_get_theme()->get('Version')
-    );
-
+function pronti_qua_enqueue_slideshow_assets() {
+    // CSS del slideshow
     wp_enqueue_style(
-        'pronti-qua-blocks-editor',
-        get_template_directory_uri() . '/assets/css/blocks-editor.css',
-        array('wp-edit-blocks'),
-        wp_get_theme()->get('Version')
-    );
-}
-add_action('enqueue_block_editor_assets', 'pronti_qua_enqueue_block_editor_assets');
-
-/**
- * Enqueue block frontend assets
- */
-function pronti_qua_enqueue_block_assets() {
-    wp_enqueue_style(
-        'pronti-qua-blocks-style',
-        get_template_directory_uri() . '/assets/css/blocks.css',
+        'pronti-qua-slideshow',
+        get_template_directory_uri() . '/blocks/slideshow/style-index.css',
         array(),
-        wp_get_theme()->get('Version')
+        filemtime(get_template_directory() . '/blocks/slideshow/style-index.css')
     );
-}
-add_action('enqueue_block_assets', 'pronti_qua_enqueue_block_assets');
 
-/**
- * Enqueue degli script specifici per blocchi (frontend)
- */
-function pronti_qua_enqueue_block_frontend_scripts() {
-    // Script slideshow frontend
+    // JavaScript del slideshow
     wp_enqueue_script(
         'pronti-qua-slideshow-frontend',
         get_template_directory_uri() . '/blocks/slideshow/frontend.js',
         array(),
-        wp_get_theme()->get('Version'),
-        true
-    );
-
-    // Script per altri blocchi interattivi
-    wp_enqueue_script(
-        'pronti-qua-blocks-frontend',
-        get_template_directory_uri() . '/assets/js/blocks-frontend.js',
-        array('jquery'),
-        wp_get_theme()->get('Version'),
+        filemtime(get_template_directory() . '/blocks/slideshow/frontend.js'),
         true
     );
 }
-add_action('wp_enqueue_scripts', 'pronti_qua_enqueue_block_frontend_scripts');
+add_action('wp_enqueue_scripts', 'pronti_qua_enqueue_slideshow_assets');
+add_action('enqueue_block_assets', 'pronti_qua_enqueue_slideshow_assets');
 
 /**
- * Crea categorie custom per i blocchi Pronti Qua
+ * Crea categorie custom per i blocchi
  */
-if (!function_exists('pronti_qua_block_categories')) {
-    function pronti_qua_block_categories($categories) {
-        return array_merge(
+function pronti_qua_block_categories($categories) {
+    return array_merge(
+        array(
             array(
-                array(
-                    'slug'  => 'pronti-qua',
-                    'title' => __('Pronti Qua ODV', 'pronti-qua'),
-                    'icon'  => 'heart',
-                ),
-                array(
-                    'slug'  => 'pronti-qua-hero',
-                    'title' => __('Hero Sections', 'pronti-qua'),
-                    'icon'  => 'cover-image',
-                ),
-                array(
-                    'slug'  => 'pronti-qua-content',
-                    'title' => __('Contenuti Speciali', 'pronti-qua'),
-                    'icon'  => 'layout',
-                ),
+                'slug'  => 'pronti-qua',
+                'title' => __('Pronti Qua ODV', 'pronti-qua'),
+                'icon'  => 'heart',
             ),
-            $categories
-        );
-    }
-    add_filter('block_categories_all', 'pronti_qua_block_categories');
-}
-
-/**
- * Registra i pattern personalizzati
- */
-function pronti_qua_register_patterns() {
-    // Includi i file dei pattern
-    if (file_exists(get_template_directory() . '/patterns/hero-patterns.php')) {
-        require_once get_template_directory() . '/patterns/hero-patterns.php';
-    }
-    if (file_exists(get_template_directory() . '/patterns/content-patterns.php')) {
-        require_once get_template_directory() . '/patterns/content-patterns.php';
-    }
-    if (file_exists(get_template_directory() . '/patterns/cta-patterns.php')) {
-        require_once get_template_directory() . '/patterns/cta-patterns.php';
-    }
-    if (file_exists(get_template_directory() . '/patterns/project-patterns.php')) {
-        require_once get_template_directory() . '/patterns/project-patterns.php';
-    }
-}
-add_action('init', 'pronti_qua_register_patterns');
-
-/**
- * Aggiungi supporto per colori custom nei blocchi
- */
-function pronti_qua_add_block_color_support() {
-    add_theme_support('editor-color-palette', array(
-        array(
-            'name'  => __('Verde Primario', 'pronti-qua'),
-            'slug'  => 'verde-primario',
-            'color' => '#6f8a2b',
+            array(
+                'slug'  => 'pronti-qua-hero',
+                'title' => __('Hero Sections', 'pronti-qua'),
+                'icon'  => 'cover-image',
+            ),
         ),
-        array(
-            'name'  => __('Azzurro Secondario', 'pronti-qua'),
-            'slug'  => 'azzurro-secondario',
-            'color' => '#379db2',
-        ),
-        array(
-            'name'  => __('Rosa Accento', 'pronti-qua'),
-            'slug'  => 'rosa-accento',
-            'color' => '#e66395',
-        ),
-        array(
-            'name'  => __('Giallo Highlight', 'pronti-qua'),
-            'slug'  => 'giallo-highlight',
-            'color' => '#ded771',
-        ),
-        array(
-            'name'  => __('Scuro', 'pronti-qua'),
-            'slug'  => 'dark',
-            'color' => '#1f2937',
-        ),
-        array(
-            'name'  => __('Grigio Scuro', 'pronti-qua'),
-            'slug'  => 'gray-700',
-            'color' => '#374151',
-        ),
-        array(
-            'name'  => __('Grigio Medio', 'pronti-qua'),
-            'slug'  => 'gray-500',
-            'color' => '#6b7280',
-        ),
-        array(
-            'name'  => __('Grigio Chiaro', 'pronti-qua'),
-            'slug'  => 'gray-300',
-            'color' => '#d1d5db',
-        ),
-        array(
-            'name'  => __('Grigio Molto Chiaro', 'pronti-qua'),
-            'slug'  => 'gray-100',
-            'color' => '#f3f4f6',
-        ),
-        array(
-            'name'  => __('Sfondo Chiaro', 'pronti-qua'),
-            'slug'  => 'light',
-            'color' => '#f8fafc',
-        ),
-        array(
-            'name'  => __('Bianco', 'pronti-qua'),
-            'slug'  => 'white',
-            'color' => '#ffffff',
-        ),
-    ));
-
-    // Supporto per gradienti custom
-    add_theme_support('editor-gradient-presets', array(
-        array(
-            'name'     => __('Verde-Azzurro', 'pronti-qua'),
-            'gradient' => 'linear-gradient(135deg, #6f8a2b 0%, #379db2 100%)',
-            'slug'     => 'verde-azzurro',
-        ),
-        array(
-            'name'     => __('Rosa-Giallo', 'pronti-qua'),
-            'gradient' => 'linear-gradient(135deg, #e66395 0%, #ded771 100%)',
-            'slug'     => 'rosa-giallo',
-        ),
-    ));
-}
-add_action('after_setup_theme', 'pronti_qua_add_block_color_support');
-
-/**
- * Aggiungi font sizes personalizzate
- */
-function pronti_qua_add_block_font_sizes() {
-    add_theme_support('editor-font-sizes', array(
-        array(
-            'name' => __('Piccolo', 'pronti-qua'),
-            'size' => 14,
-            'slug' => 'small'
-        ),
-        array(
-            'name' => __('Normale', 'pronti-qua'),
-            'size' => 16,
-            'slug' => 'normal'
-        ),
-        array(
-            'name' => __('Medio', 'pronti-qua'),
-            'size' => 18,
-            'slug' => 'medium'
-        ),
-        array(
-            'name' => __('Grande', 'pronti-qua'),
-            'size' => 24,
-            'slug' => 'large'
-        ),
-        array(
-            'name' => __('Extra Grande', 'pronti-qua'),
-            'size' => 32,
-            'slug' => 'x-large'
-        ),
-        array(
-            'name' => __('Titolo', 'pronti-qua'),
-            'size' => 48,
-            'slug' => 'xx-large'
-        ),
-        array(
-            'name' => __('Hero', 'pronti-qua'),
-            'size' => 64,
-            'slug' => 'xxx-large'
-        ),
-    ));
-}
-add_action('after_setup_theme', 'pronti_qua_add_block_font_sizes');
-
-/**
- * Rimuovi blocchi non necessari dall'editor (opzionale)
- */
-function pronti_qua_allowed_block_types($allowed_blocks, $editor_context) {
-    $allowed_blocks = array(
-        // Core blocks essenziali
-        'core/paragraph',
-        'core/heading',
-        'core/image',
-        'core/gallery',
-        'core/list',
-        'core/quote',
-        'core/button',
-        'core/buttons',
-        'core/columns',
-        'core/column',
-        'core/group',
-        'core/cover',
-        'core/spacer',
-        'core/separator',
-        'core/html',
-        'core/shortcode',
-
-        // Media
-        'core/video',
-        'core/audio',
-        'core/file',
-
-        // Embed selezionati
-        'core/embed',
-        'core-embed/youtube',
-        'core-embed/vimeo',
-
-        // Custom blocks Pronti Qua
-        'pronti-qua/slideshow',
-        'pronti-qua/project-progress',
-        'pronti-qua/project-card',
-        'pronti-qua/impact-counter',
-        'pronti-qua/testimonial',
-        'pronti-qua/team-member',
-        'pronti-qua/alert-banner',
-        'pronti-qua/codice-5x1000',
-
-        // Pattern
-        'core/pattern',
+        $categories
     );
-
-    return $allowed_blocks;
 }
-add_filter('allowed_block_types_all', 'pronti_qua_allowed_block_types', 10, 2);
+add_filter('block_categories_all', 'pronti_qua_block_categories');
 
 /**
- * Aggiungi stili editor per i blocchi custom
+ * Aggiungi editor placeholder per il blocco slideshow
  */
-function pronti_qua_add_editor_styles() {
-    add_theme_support('editor-styles');
-
-    // Stili editor per blocchi esistenti
-    add_editor_style('assets/css/blocks-editor.css');
-
-    // Stili specifici per ogni blocco se esistono
-    $blocks_with_editor_styles = array(
-        'slideshow',
-        'project-progress',
-        'project-card',
-        'impact-counter',
-        'testimonial',
-        'team-member',
-        'alert-banner',
-        'codice-5x1000'
+function pronti_qua_slideshow_editor_assets() {
+    wp_enqueue_script(
+        'pronti-qua-slideshow-editor-placeholder',
+        get_template_directory_uri() . '/blocks/slideshow/editor-placeholder.js',
+        array('wp-blocks', 'wp-element', 'wp-editor'),
+        filemtime(get_template_directory() . '/blocks/slideshow/editor-placeholder.js'),
+        false
     );
-
-    foreach ($blocks_with_editor_styles as $block) {
-        $editor_style_path = "blocks/{$block}/index.css";
-        if (file_exists(get_template_directory() . '/' . $editor_style_path)) {
-            add_editor_style($editor_style_path);
-        }
-    }
 }
-add_action('after_setup_theme', 'pronti_qua_add_editor_styles');
-
-/**
- * Localizza script per blocchi
- */
-function pronti_qua_localize_block_scripts() {
-    wp_localize_script('pronti-qua-blocks', 'prontiQuaBlocks', array(
-        'ajaxUrl' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('pronti_qua_blocks_nonce'),
-        'themeUrl' => get_template_directory_uri(),
-        'colors' => array(
-            'verde-primario' => '#6f8a2b',
-            'azzurro-secondario' => '#379db2',
-            'rosa-accento' => '#e66395',
-            'giallo-highlight' => '#ded771',
-        ),
-    ));
-}
-add_action('wp_enqueue_scripts', 'pronti_qua_localize_block_scripts');
-add_action('enqueue_block_editor_assets', 'pronti_qua_localize_block_scripts');
-
-/**
- * Aggiungi supporto per responsive images nei blocchi
- */
-function pronti_qua_add_responsive_image_support() {
-    add_theme_support('responsive-embeds');
-    add_theme_support('post-thumbnails');
-
-    // Aggiungi size personalizzate per i blocchi
-    add_image_size('pronti-qua-slideshow', 800, 400, true);
-    add_image_size('pronti-qua-project-card', 400, 300, true);
-    add_image_size('pronti-qua-team-member', 300, 300, true);
-}
-add_action('after_setup_theme', 'pronti_qua_add_responsive_image_support');
-?>
+add_action('enqueue_block_editor_assets', 'pronti_qua_slideshow_editor_assets');

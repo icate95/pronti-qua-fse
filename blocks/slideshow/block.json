@@ -3,11 +3,11 @@
   "apiVersion": 3,
   "name": "pronti-qua/slideshow",
   "version": "1.0.0",
-  "title": "Slideshow Pronti Qua",
+  "title": "Pronti Qua Slideshow",
   "category": "pronti-qua",
   "icon": "slides",
-  "description": "Slideshow automatico personalizzabile per mostrare contenuti dell'associazione",
-  "keywords": ["slideshow", "slider", "carousel", "images"],
+  "description": "Slideshow automatico per mostrare progetti e servizi dell'associazione",
+  "keywords": ["slideshow", "carousel", "progetti", "servizi"],
   "textdomain": "pronti-qua",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
@@ -64,11 +64,7 @@
     },
     "showIndicators": {
       "type": "boolean",
-      "default": false
-    },
-    "backgroundColor": {
-      "type": "string",
-      "default": "#f8fafc"
+      "default": true
     }
   },
   "supports": {
@@ -79,8 +75,7 @@
     },
     "color": {
       "background": true,
-      "text": false,
-      "gradients": true
+      "text": false
     }
   },
   "example": {
@@ -88,7 +83,7 @@
       "slides": [
         {
           "title": "Esempio Slide",
-          "content": "Contenuto di esempio per l'anteprima",
+          "content": "Contenuto di esempio per l'anteprima del blocco",
           "backgroundColor": "verde-primario",
           "imageId": null,
           "imageUrl": "",

@@ -1,414 +1,473 @@
-import { registerBlockType } from '@wordpress/blocks';
-import { __ } from '@wordpress/i18n';
-import {
-	useBlockProps,
-	InspectorControls,
-	PanelColorSettings,
-	MediaUpload,
-	MediaUploadCheck
-} from '@wordpress/block-editor';
-import {
-	PanelBody,
-	PanelRow,
-	TextControl,
-	TextareaControl,
-	ToggleControl,
-	RangeControl,
-	Button,
-	SelectControl,
-	Flex,
-	FlexItem
-} from '@wordpress/components';
-import { useState } from '@wordpress/element';
-import { upload } from '@wordpress/icons';
+(function() {
+	'use strict';
 
-import './editor.scss';
+	// Verifica dependencies WordPress
+	if (!wp || !wp.blocks || !wp.element || !wp.components || !wp.blockEditor) {
+		console.error('WordPress dependencies missing');
+		return;
+	}
 
-const COLOR_OPTIONS = [
-	{ name: 'Verde Primario', slug: 'verde-primario', color: '#6f8a2b' },
-	{ name: 'Azzurro Secondario', slug: 'azzurro-secondario', color: '#379db2' },
-	{ name: 'Rosa Accento', slug: 'rosa-accento', color: '#e66395' },
-	{ name: 'Giallo Highlight', slug: 'giallo-highlight', color: '#ded771' }
-];
+	const { registerBlockType } = wp.blocks;
+	const { __ } = wp.i18n || (str => str);
+	const {
+		useBlockProps,
+		InspectorControls,
+		MediaUpload,
+		MediaUploadCheck
+	} = wp.blockEditor;
+	const {
+		PanelBody,
+		TextControl,
+		TextareaControl,
+		ToggleControl,
+		RangeControl,
+		Button,
+		SelectControl,
+		Flex,
+		FlexItem
+	} = wp.components;
+	const { useState, createElement: el } = wp.element;
 
-registerBlockType('pronti-qua/slideshow', {
-	edit({ attributes, setAttributes }) {
-		const { slides, height, autoplay, interval, showIndicators, backgroundColor } = attributes;
-		const [currentSlide, setCurrentSlide] = useState(0);
+	const COLOR_OPTIONS = [
+		{ label: 'Verde Primario', value: 'verde-primario' },
+		{ label: 'Azzurro Secondario', value: 'azzurro-secondario' },
+		{ label: 'Rosa Accento', value: 'rosa-accento' },
+		{ label: 'Giallo Highlight', value: 'giallo-highlight' }
+	];
 
-		const blockProps = useBlockProps({
-			className: 'pronti-qua-slideshow-editor'
-		});
+	// Default slides
+	const getDefaultSlides = () => [
+		{
+			title: 'La nostra storia',
+			content: 'In memoria di Roberto e della sua determinazione',
+			backgroundColor: 'verde-primario',
+			imageId: null,
+			imageUrl: '',
+			imageAlt: ''
+		},
+		{
+			title: 'Supporto psicologico',
+			content: 'Specialisti dedicati per pazienti e famiglie',
+			backgroundColor: 'rosa-accento',
+			imageId: null,
+			imageUrl: '',
+			imageAlt: ''
+		},
+		{
+			title: 'Onde di Speranza',
+			content: 'Raccolta fondi per strumentazione medica',
+			backgroundColor: 'azzurro-secondario',
+			imageId: null,
+			imageUrl: '',
+			imageAlt: ''
+		},
+		{
+			title: 'BussoLà',
+			content: 'Rete territoriale per l\'assistenza oncologica',
+			backgroundColor: 'giallo-highlight',
+			imageId: null,
+			imageUrl: '',
+			imageAlt: ''
+		}
+	];
 
-		const updateSlide = (index, field, value) => {
-			const newSlides = [...slides];
-			newSlides[index] = {
-				...newSlides[index],
-				[field]: value
-			};
-			setAttributes({ slides: newSlides });
-		};
+	registerBlockType('pronti-qua/slideshow', {
+		title: 'Slideshow Pronti Qua',
+		icon: 'slides',
+		category: 'pronti-qua',
+		description: 'Slideshow personalizzabile per l\'associazione',
+		keywords: ['slideshow', 'slider', 'carousel'],
 
-		const addSlide = () => {
-			const newSlides = [...slides, {
-				title: 'Nuova Slide',
-				content: 'Contenuto della slide',
-				backgroundColor: 'verde-primario',
-				imageId: null,
-				imageUrl: '',
-				imageAlt: ''
-			}];
-			setAttributes({ slides: newSlides });
-		};
-
-		const removeSlide = (index) => {
-			if (slides.length > 1) {
-				const newSlides = slides.filter((_, i) => i !== index);
-				setAttributes({ slides: newSlides });
-				setCurrentSlide(Math.min(currentSlide, newSlides.length - 1));
+		attributes: {
+			slides: {
+				type: 'array',
+				default: getDefaultSlides()
+			},
+			height: {
+				type: 'number',
+				default: 400
+			},
+			autoplay: {
+				type: 'boolean',
+				default: true
+			},
+			interval: {
+				type: 'number',
+				default: 4000
+			},
+			showIndicators: {
+				type: 'boolean',
+				default: true
 			}
-		};
+		},
 
-		const getBackgroundColor = (colorSlug) => {
-			const colorObj = COLOR_OPTIONS.find(c => c.slug === colorSlug);
-			return colorObj ? colorObj.color : '#6f8a2b';
-		};
+		edit: function(props) {
+			const { attributes, setAttributes } = props;
+			const { slides, height, autoplay, interval, showIndicators } = attributes;
+			const [currentSlide, setCurrentSlide] = useState(0);
 
-		return (
-			<div {...blockProps}>
-				<InspectorControls>
-					<PanelBody title={__('Impostazioni Slideshow', 'pronti-qua')} initialOpen={true}>
-						<PanelRow>
-							<RangeControl
-								label={__('Altezza (px)', 'pronti-qua')}
-								value={height}
-								onChange={(value) => setAttributes({ height: value })}
-								min={200}
-								max={600}
-								step={10}
-							/>
-						</PanelRow>
+			// Safe block props
+			const blockProps = useBlockProps({
+				className: 'pronti-qua-slideshow-editor',
+				style: {
+					border: '2px dashed #e2e8f0',
+					borderRadius: '8px',
+					padding: '20px',
+					backgroundColor: '#f8fafc'
+				}
+			});
 
-						<PanelRow>
-							<ToggleControl
-								label={__('Riproduzione automatica', 'pronti-qua')}
-								checked={autoplay}
-								onChange={(value) => setAttributes({ autoplay: value })}
-							/>
-						</PanelRow>
+			// Ensure slides is always an array
+			const validSlides = Array.isArray(slides) && slides.length > 0 ? slides : getDefaultSlides();
 
-						{autoplay && (
-							<PanelRow>
-								<RangeControl
-									label={__('Intervallo (ms)', 'pronti-qua')}
-									value={interval}
-									onChange={(value) => setAttributes({ interval: value })}
-									min={2000}
-									max={10000}
-									step={500}
-								/>
-							</PanelRow>
-						)}
+			// Update slide function
+			const updateSlide = (index, field, value) => {
+				const newSlides = [...validSlides];
+				if (newSlides[index]) {
+					newSlides[index] = {
+						...newSlides[index],
+						[field]: value
+					};
+					setAttributes({ slides: newSlides });
+				}
+			};
 
-						<PanelRow>
-							<ToggleControl
-								label={__('Mostra indicatori', 'pronti-qua')}
-								checked={showIndicators}
-								onChange={(value) => setAttributes({ showIndicators: value })}
-							/>
-						</PanelRow>
-					</PanelBody>
+			// Add slide function
+			const addSlide = () => {
+				const newSlides = [...validSlides, {
+					title: 'Nuova Slide',
+					content: 'Contenuto della nuova slide',
+					backgroundColor: 'verde-primario',
+					imageId: null,
+					imageUrl: '',
+					imageAlt: ''
+				}];
+				setAttributes({ slides: newSlides });
+				setCurrentSlide(newSlides.length - 1);
+			};
 
-					<PanelColorSettings
-						title={__('Colore di sfondo', 'pronti-qua')}
-						colorSettings={[
-							{
-								value: backgroundColor,
-								onChange: (value) => setAttributes({ backgroundColor: value }),
-								label: __('Sfondo slideshow', 'pronti-qua')
+			// Remove slide function
+			const removeSlide = (index) => {
+				if (validSlides.length > 1 && validSlides[index]) {
+					const newSlides = validSlides.filter((_, i) => i !== index);
+					setAttributes({ slides: newSlides });
+					setCurrentSlide(Math.min(currentSlide, newSlides.length - 1));
+				}
+			};
+
+			// Safe current slide
+			const safeCurrentSlide = Math.min(currentSlide, validSlides.length - 1);
+			const currentSlideData = validSlides[safeCurrentSlide];
+
+			return el('div', blockProps,
+
+				// Inspector Controls
+				el(InspectorControls, null,
+					el(PanelBody, {
+							title: 'Impostazioni Slideshow',
+							initialOpen: true
+						},
+						el(RangeControl, {
+							label: 'Altezza (px)',
+							value: height,
+							onChange: (value) => setAttributes({ height: value }),
+							min: 200,
+							max: 800,
+							step: 50
+						}),
+
+						el(ToggleControl, {
+							label: 'Riproduzione automatica',
+							checked: autoplay,
+							onChange: (value) => setAttributes({ autoplay: value }),
+							help: 'Le slide cambieranno automaticamente'
+						}),
+
+						autoplay && el(RangeControl, {
+							label: 'Intervallo (millisecondi)',
+							value: interval,
+							onChange: (value) => setAttributes({ interval: value }),
+							min: 1000,
+							max: 10000,
+							step: 500,
+							help: 'Tempo tra le slide in autoplay'
+						}),
+
+						el(ToggleControl, {
+							label: 'Mostra indicatori',
+							checked: showIndicators,
+							onChange: (value) => setAttributes({ showIndicators: value }),
+							help: 'Punti di navigazione in basso'
+						})
+					),
+
+					el(PanelBody, {
+							title: 'Gestione Slide',
+							initialOpen: false
+						},
+						el('p', { style: { marginBottom: '10px' } },
+							el('strong', null, `Slide totali: ${validSlides.length}`)
+						),
+
+						el(Button, {
+							isPrimary: true,
+							onClick: addSlide,
+							style: { width: '100%', marginBottom: '10px' }
+						}, '+ Aggiungi Slide')
+					)
+				),
+
+				// Preview Area
+				el('div', {
+						className: 'slideshow-preview',
+						style: {
+							height: height + 'px',
+							position: 'relative',
+							border: '2px solid #e0e0e0',
+							borderRadius: '8px',
+							overflow: 'hidden',
+							backgroundColor: '#fff',
+							marginBottom: '20px'
+						}
+					},
+					// Slide Navigation Tabs
+					el('div', {
+							className: 'slide-navigation',
+							style: {
+								display: 'flex',
+								gap: '5px',
+								padding: '10px',
+								backgroundColor: 'rgba(255,255,255,0.95)',
+								borderBottom: '1px solid #e0e0e0',
+								flexWrap: 'wrap'
 							}
-						]}
-					/>
+						},
+						validSlides.map((slide, index) =>
+							el(Button, {
+								key: index,
+								variant: safeCurrentSlide === index ? 'primary' : 'secondary',
+								onClick: () => setCurrentSlide(index),
+								style: {
+									padding: '6px 12px',
+									fontSize: '12px',
+									minHeight: '32px'
+								}
+							}, `${index + 1}`)
+						)
+					),
 
-					<PanelBody title={__('Gestione Slide', 'pronti-qua')} initialOpen={false}>
-						<PanelRow>
-							<Flex>
-								<FlexItem>
-									<Button
-										variant="primary"
-										onClick={addSlide}
-									>
-										{__('Aggiungi Slide', 'pronti-qua')}
-									</Button>
-								</FlexItem>
-								<FlexItem>
-									<span>{slides.length} slide totali</span>
-								</FlexItem>
-							</Flex>
-						</PanelRow>
-					</PanelBody>
-				</InspectorControls>
-
-				{/* Preview Slideshow */}
-				<div
-					className="slideshow-preview"
-					style={{
-						height: `${height}px`,
-						backgroundColor: backgroundColor,
-						position: 'relative',
-						overflow: 'hidden',
-						border: '1px solid #ddd'
-					}}
-				>
-					{/* Slide Navigation */}
-					<div className="slide-navigation" style={{
-						position: 'absolute',
-						top: '10px',
-						left: '10px',
-						zIndex: 10,
-						display: 'flex',
-						gap: '5px'
-					}}>
-						{slides.map((_, index) => (
-							<Button
-								key={index}
-								variant={currentSlide === index ? 'primary' : 'secondary'}
-								onClick={() => setCurrentSlide(index)}
-								style={{ padding: '4px 8px', fontSize: '12px' }}
-							>
-								{index + 1}
-							</Button>
-						))}
-					</div>
-
-					{/* Current Slide Display */}
-					{slides[currentSlide] && (
-						<div
-							style={{
+					// Current Slide Display
+					currentSlideData && el('div', {
+							style: {
 								position: 'absolute',
-								width: '100%',
-								height: '100%',
+								top: '50px',
+								left: 0,
+								right: 0,
+								bottom: 0,
 								display: 'flex',
 								alignItems: 'center',
 								justifyContent: 'center',
-								background: slides[currentSlide].imageUrl
-									? `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${slides[currentSlide].imageUrl})`
-									: `linear-gradient(135deg, ${getBackgroundColor(slides[currentSlide].backgroundColor)}20, ${getBackgroundColor(slides[currentSlide].backgroundColor)}10)`,
+								background: currentSlideData.imageUrl
+									? `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(${currentSlideData.imageUrl})`
+									: `linear-gradient(135deg, var(--wp--preset--color--${currentSlideData.backgroundColor}, #6f8a2b), var(--wp--preset--color--${currentSlideData.backgroundColor}, #6f8a2b)90)`,
 								backgroundSize: 'cover',
-								backgroundPosition: 'center'
-							}}
-						>
-							<div style={{ textAlign: 'center', padding: '2rem', color: 'white' }}>
-								<h4 style={{
+								backgroundPosition: 'center',
+								color: currentSlideData.imageUrl ? 'white' : '#333'
+							}
+						},
+						el('div', {
+								style: {
+									textAlign: 'center',
+									padding: '2rem',
+									maxWidth: '90%',
+									backgroundColor: currentSlideData.imageUrl ? 'rgba(0,0,0,0.3)' : 'transparent',
+									borderRadius: currentSlideData.imageUrl ? '8px' : '0'
+								}
+							},
+							el('h4', {
+								style: {
 									margin: '0 0 1rem',
 									fontSize: '1.5rem',
 									fontWeight: '600',
-									color: slides[currentSlide].imageUrl ? 'white' : '#1f2937',
-									textShadow: slides[currentSlide].imageUrl ? '2px 2px 4px rgba(0,0,0,0.8)' : 'none'
-								}}>
-									{slides[currentSlide].title}
-								</h4>
-								<p style={{
+									textShadow: currentSlideData.imageUrl ? '2px 2px 4px rgba(0,0,0,0.8)' : 'none'
+								}
+							}, currentSlideData.title || 'Titolo Slide'),
+							el('p', {
+								style: {
 									margin: '0',
 									fontSize: '1rem',
-									color: slides[currentSlide].imageUrl ? '#f3f4f6' : '#6b7280',
-									textShadow: slides[currentSlide].imageUrl ? '1px 1px 2px rgba(0,0,0,0.8)' : 'none'
-								}}>
-									{slides[currentSlide].content}
-								</p>
-							</div>
-						</div>
-					)}
-				</div>
+									lineHeight: '1.5',
+									textShadow: currentSlideData.imageUrl ? '1px 1px 2px rgba(0,0,0,0.8)' : 'none'
+								}
+							}, currentSlideData.content || 'Contenuto della slide')
+						)
+					),
 
-				{/* Slide Editor */}
-				{slides[currentSlide] && (
-					<div className="slide-editor" style={{ marginTop: '20px', padding: '20px', border: '1px solid #ddd', borderRadius: '4px' }}>
-						<h4>{__('Modifica Slide', 'pronti-qua')} {currentSlide + 1}</h4>
-
-						<TextControl
-							label={__('Titolo', 'pronti-qua')}
-							value={slides[currentSlide].title}
-							onChange={(value) => updateSlide(currentSlide, 'title', value)}
-						/>
-
-						<TextareaControl
-							label={__('Contenuto', 'pronti-qua')}
-							value={slides[currentSlide].content}
-							onChange={(value) => updateSlide(currentSlide, 'content', value)}
-							rows={3}
-						/>
-
-						<div style={{ marginBottom: '15px' }}>
-							<label style={{ display: 'block', marginBottom: '8px', fontWeight: '600' }}>
-								{__('Immagine di sfondo', 'pronti-qua')}
-							</label>
-							<MediaUploadCheck>
-								<MediaUpload
-									onSelect={(media) => {
-										updateSlide(currentSlide, 'imageId', media.id);
-										updateSlide(currentSlide, 'imageUrl', media.url);
-										updateSlide(currentSlide, 'imageAlt', media.alt || '');
-									}}
-									allowedTypes={['image']}
-									value={slides[currentSlide].imageId}
-									render={({ open }) => (
-										<div>
-											{slides[currentSlide].imageUrl ? (
-												<div style={{ marginBottom: '10px' }}>
-													<img
-														src={slides[currentSlide].imageUrl}
-														alt={slides[currentSlide].imageAlt}
-														style={{ maxWidth: '200px', height: 'auto', display: 'block', marginBottom: '10px' }}
-													/>
-													<Button
-														variant="secondary"
-														isDestructive
-														onClick={() => {
-															updateSlide(currentSlide, 'imageId', null);
-															updateSlide(currentSlide, 'imageUrl', '');
-															updateSlide(currentSlide, 'imageAlt', '');
-														}}
-													>
-														{__('Rimuovi immagine', 'pronti-qua')}
-													</Button>
-												</div>
-											) : null}
-											<Button
-												variant="primary"
-												onClick={open}
-												icon={upload}
-											>
-												{slides[currentSlide].imageUrl ? __('Cambia immagine', 'pronti-qua') : __('Seleziona immagine', 'pronti-qua')}
-											</Button>
-										</div>
-									)}
-								/>
-							</MediaUploadCheck>
-						</div>
-
-						<SelectControl
-							label={__('Colore di sfondo', 'pronti-qua')}
-							value={slides[currentSlide].backgroundColor}
-							options={COLOR_OPTIONS.map(color => ({
-								label: color.name,
-								value: color.slug
-							}))}
-							onChange={(value) => updateSlide(currentSlide, 'backgroundColor', value)}
-							help={__('Il colore verrà utilizzato se non è impostata un\'immagine', 'pronti-qua')}
-						/>
-
-						{slides.length > 1 && (
-							<Button
-								variant="secondary"
-								isDestructive
-								onClick={() => removeSlide(currentSlide)}
-								style={{ marginTop: '10px' }}
-							>
-								{__('Rimuovi questa slide', 'pronti-qua')}
-							</Button>
-						)}
-					</div>
-				)}
-			</div>
-		);
-	},
-
-	save({ attributes }) {
-		const { slides, height, autoplay, interval, showIndicators, backgroundColor } = attributes;
-		const blockProps = useBlockProps.save({
-			className: 'pronti-qua-slideshow'
-		});
-
-		return (
-			<div {...blockProps}>
-				<div
-					className="slideshow-container"
-					data-autoplay={autoplay}
-					data-interval={interval}
-					data-show-indicators={showIndicators}
-					style={{
-						position: 'relative',
-						height: `${height}px`,
-						backgroundColor: backgroundColor,
-						overflow: 'hidden'
-					}}
-				>
-					{slides.map((slide, index) => (
-						<div
-							key={index}
-							className={`slide ${index === 0 ? 'active' : ''}`}
-							style={{
+					// Indicators Preview
+					showIndicators && validSlides.length > 1 && el('div', {
+							style: {
 								position: 'absolute',
-								width: '100%',
-								height: '100%',
+								bottom: '16px',
+								left: '50%',
+								transform: 'translateX(-50%)',
 								display: 'flex',
-								alignItems: 'center',
-								justifyContent: 'center',
-								opacity: index === 0 ? 1 : 0,
-								transition: 'opacity 0.8s ease-in-out',
-								background: `linear-gradient(135deg, var(--wp--preset--color--${slide.backgroundColor})20, var(--wp--preset--color--${slide.backgroundColor})10)`
-							}}
-						>
-							<div style={{ textAlign: 'center', padding: '2rem' }}>
-								<div style={{
-									width: '100px',
-									height: '100px',
-									background: `var(--wp--preset--color--${slide.backgroundColor})`,
-									margin: '0 auto 1.5rem',
-									display: 'flex',
-									alignItems: 'center',
-									justifyContent: 'center',
-									fontSize: '3rem',
-									color: slide.backgroundColor === 'giallo-highlight' ? '#2d3748' : 'white'
-								}}>
-									{slide.icon}
-								</div>
-								<h4 style={{
-									color: 'var(--wp--preset--color--dark)',
-									margin: '0 0 0.5rem',
-									fontSize: '1.5rem',
-									fontWeight: '600'
-								}}>
-									{slide.title}
-								</h4>
-								<p style={{
-									color: 'var(--wp--preset--color--gray-700)',
-									margin: '0',
-									fontSize: '1rem'
-								}}>
-									{slide.content}
-								</p>
-							</div>
-						</div>
-					))}
+								gap: '8px'
+							}
+						},
+						validSlides.map((_, index) =>
+							el('div', {
+								key: index,
+								style: {
+									width: '12px',
+									height: '12px',
+									borderRadius: '50%',
+									backgroundColor: index === safeCurrentSlide ? '#6f8a2b' : 'rgba(255,255,255,0.5)',
+									cursor: 'pointer',
+									border: '2px solid rgba(255,255,255,0.8)',
+									transition: 'all 0.3s ease'
+								},
+								onClick: () => setCurrentSlide(index)
+							})
+						)
+					)
+				),
 
-					{showIndicators && (
-						<div className="slideshow-indicators" style={{
-							position: 'absolute',
-							bottom: '16px',
-							left: '50%',
-							transform: 'translateX(-50%)',
-							display: 'flex',
-							gap: '8px'
-						}}>
-							{slides.map((_, index) => (
-								<div
-									key={index}
-									className={`indicator ${index === 0 ? 'active' : ''}`}
-									style={{
-										width: '12px',
-										height: '12px',
-										background: index === 0 ? 'var(--wp--preset--color--verde-primario)' : 'rgba(111,138,43,0.3)',
-										cursor: 'pointer',
-										transition: 'all 0.3s ease'
-									}}
-								/>
-							))}
-						</div>
-					)}
-				</div>
-			</div>
-		);
-	}
-});
+				// Slide Editor
+				currentSlideData && el('div', {
+						className: 'slide-editor',
+						style: {
+							padding: '20px',
+							border: '1px solid #e0e0e0',
+							borderRadius: '8px',
+							backgroundColor: '#fff'
+						}
+					},
+					el('h4', {
+						style: {
+							margin: '0 0 20px 0',
+							fontSize: '16px',
+							fontWeight: '600',
+							color: '#1f2937',
+							borderBottom: '1px solid #e5e7eb',
+							paddingBottom: '10px'
+						}
+					}, `Modifica Slide ${safeCurrentSlide + 1} di ${validSlides.length}`),
+
+					// Title input
+					el(TextControl, {
+						label: 'Titolo',
+						value: currentSlideData.title || '',
+						onChange: (value) => updateSlide(safeCurrentSlide, 'title', value),
+						placeholder: 'Inserisci il titolo della slide'
+					}),
+
+					// Content input
+					el(TextareaControl, {
+						label: 'Contenuto',
+						value: currentSlideData.content || '',
+						onChange: (value) => updateSlide(safeCurrentSlide, 'content', value),
+						rows: 3,
+						placeholder: 'Inserisci il contenuto della slide'
+					}),
+
+					// Image upload
+					el('div', {
+							style: { marginBottom: '20px' }
+						},
+						el('label', {
+							style: {
+								display: 'block',
+								marginBottom: '8px',
+								fontWeight: '600',
+								fontSize: '14px'
+							}
+						}, 'Immagine di sfondo'),
+
+						el(MediaUploadCheck, null,
+							el(MediaUpload, {
+								onSelect: (media) => {
+									updateSlide(safeCurrentSlide, 'imageId', media.id);
+									updateSlide(safeCurrentSlide, 'imageUrl', media.url);
+									updateSlide(safeCurrentSlide, 'imageAlt', media.alt || '');
+								},
+								allowedTypes: ['image'],
+								value: currentSlideData.imageId,
+								render: ({ open }) => el('div', null,
+									currentSlideData.imageUrl && el('div', {
+											style: { marginBottom: '10px' }
+										},
+										el('img', {
+											src: currentSlideData.imageUrl,
+											alt: currentSlideData.imageAlt || '',
+											style: {
+												maxWidth: '200px',
+												height: 'auto',
+												borderRadius: '4px',
+												border: '1px solid #e0e0e0'
+											}
+										})
+									),
+
+									el(Flex, { gap: 2, style: { marginTop: '10px' } },
+										el(Button, {
+											onClick: open,
+											variant: 'secondary'
+										}, currentSlideData.imageUrl ? 'Cambia Immagine' : 'Seleziona Immagine'),
+
+										currentSlideData.imageUrl && el(Button, {
+											onClick: () => {
+												updateSlide(safeCurrentSlide, 'imageId', null);
+												updateSlide(safeCurrentSlide, 'imageUrl', '');
+												updateSlide(safeCurrentSlide, 'imageAlt', '');
+											},
+											variant: 'secondary',
+											isDestructive: true
+										}, 'Rimuovi')
+									)
+								)
+							})
+						)
+					),
+
+					// Background color
+					el(SelectControl, {
+						label: 'Colore di sfondo',
+						value: currentSlideData.backgroundColor || 'verde-primario',
+						options: COLOR_OPTIONS,
+						onChange: (value) => updateSlide(safeCurrentSlide, 'backgroundColor', value),
+						help: 'Usato quando non c\'è immagine di sfondo'
+					}),
+
+					// Slide actions
+					el('div', {
+							style: {
+								marginTop: '20px',
+								paddingTop: '20px',
+								borderTop: '1px solid #e5e7eb',
+								display: 'flex',
+								justifyContent: 'space-between',
+								alignItems: 'center'
+							}
+						},
+						el('div', {
+							style: { fontSize: '14px', color: '#6b7280' }
+						}, `Slide ${safeCurrentSlide + 1} di ${validSlides.length}`),
+
+						validSlides.length > 1 && el(Button, {
+							onClick: () => removeSlide(safeCurrentSlide),
+							variant: 'secondary',
+							isDestructive: true,
+							style: { marginLeft: '10px' }
+						}, 'Elimina Slide')
+					)
+				)
+			);
+		},
+
+		save: function() {
+			// Dynamic rendering tramite PHP
+			return null;
+		}
+	});
+
+})();
