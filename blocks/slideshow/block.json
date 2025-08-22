@@ -3,53 +3,17 @@
   "apiVersion": 3,
   "name": "pronti-qua/slideshow",
   "version": "1.0.0",
-  "title": "Pronti Qua Slideshow",
+  "title": "Slideshow Pronti Qua",
   "category": "pronti-qua",
   "icon": "slides",
-  "description": "Slideshow automatico per mostrare progetti e servizi dell'associazione",
-  "keywords": ["slideshow", "carousel", "progetti", "servizi"],
+  "description": "Slideshow automatico con immagini predefinite - Identico tra editor e frontend",
+  "keywords": ["slideshow", "carousel", "progetti", "servizi", "immagini"],
   "textdomain": "pronti-qua",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css",
+  "render": "file:./render.php",
   "attributes": {
-    "slides": {
-      "type": "array",
-      "default": [
-        {
-          "title": "La nostra storia",
-          "content": "In memoria di Roberto e della sua determinazione",
-          "backgroundColor": "verde-primario",
-          "imageId": null,
-          "imageUrl": "",
-          "imageAlt": ""
-        },
-        {
-          "title": "Supporto psicologico",
-          "content": "Specialisti dedicati per pazienti e famiglie",
-          "backgroundColor": "rosa-accento",
-          "imageId": null,
-          "imageUrl": "",
-          "imageAlt": ""
-        },
-        {
-          "title": "Onde di Speranza",
-          "content": "Raccolta fondi per strumentazione medica",
-          "backgroundColor": "azzurro-secondario",
-          "imageId": null,
-          "imageUrl": "",
-          "imageAlt": ""
-        },
-        {
-          "title": "BussoLà",
-          "content": "Rete territoriale per l'assistenza oncologica",
-          "backgroundColor": "giallo-highlight",
-          "imageId": null,
-          "imageUrl": "",
-          "imageAlt": ""
-        }
-      ]
-    },
     "height": {
       "type": "number",
       "default": 400
@@ -74,22 +38,18 @@
       "padding": true
     },
     "color": {
-      "background": true,
+      "background": false,
       "text": false
-    }
+    },
+    "customClassName": false,
+    "className": false
   },
   "example": {
     "attributes": {
-      "slides": [
-        {
-          "title": "Esempio Slide",
-          "content": "Contenuto di esempio per l'anteprima del blocco",
-          "backgroundColor": "verde-primario",
-          "imageId": null,
-          "imageUrl": "",
-          "imageAlt": ""
-        }
-      ]
+      "height": 300,
+      "autoplay": true,
+      "interval": 4000,
+      "showIndicators": true
     }
   }
 }

@@ -47,27 +47,27 @@
 				{
 					title: 'I nostri volontari',
 					content: 'Grazie ai volontari e a chi ci sostiene quotidianamente riusciamo ad ottenere grandi risultati',
-					imageUrl: '/wp-content/themes/pronti-qua-fse/assets/img/slide-volontari.jpg'
+					imageUrl: '/wp-content/themes/pronti-qua-fse/assets/img/slide-volontari.jpeg'
 				},
 				{
 					title: 'Supporto psicologico specializzato',
 					content: 'Professionisti qualificati accompagnano pazienti e famiglie nel percorso di cura',
-					imageUrl: '/wp-content/themes/pronti-qua-fse/assets/img/slide-supporto.jpg'
+					imageUrl: '/wp-content/themes/pronti-qua-fse/assets/img/slide-supporto.jpeg'
 				},
 				{
 					title: 'Le nostre raccolte fondi',
 					content: 'Eventi e mercatini per sostenere la ricerca e i progetti dell\'associazione',
-					imageUrl: '/wp-content/themes/pronti-qua-fse/assets/img/slide-mercatini.jpg'
+					imageUrl: '/wp-content/themes/pronti-qua-fse/assets/img/slide-mercatini.jpeg'
 				},
 				{
 					title: 'Collaborazione con l\'Ospedale Santa Chiara',
 					content: 'Partnership strategica per migliorare l\'assistenza ai pazienti oncologici',
-					imageUrl: '/wp-content/themes/pronti-qua-fse/assets/img/slide-medici.jpg'
+					imageUrl: '/wp-content/themes/pronti-qua-fse/assets/img/slide-medici.jpeg'
 				},
 				{
 					title: 'Sempre pronti per nuovi progetti',
 					content: 'Idee innovative al servizio di famiglie e pazienti in difficoltà',
-					imageUrl: '/wp-content/themes/pronti-qua-fse/assets/img/slide-progetti.jpg'
+					imageUrl: '/wp-content/themes/pronti-qua-fse/assets/img/slide-progetti.jpeg'
 				}
 			];
 

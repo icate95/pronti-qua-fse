@@ -36,14 +36,25 @@
     z-index: 2;
 }
 
-/* NASCONDE COMPLETAMENTE I TESTI */
-.pronti-qua-slideshow .slide > div {
-    display: none !important;
+/* Immagini di sfondo specifiche - SENZA VIRGOLETTE */
+.pronti-qua-slideshow .slide:nth-child(1) {
+    background-image: url(/prontiqua/wp-content/themes/pronti-qua-fse/assets/img/slide-volontari.jpeg);
 }
 
-.pronti-qua-slideshow .slide h4,
-.pronti-qua-slideshow .slide p {
-    display: none !important;
+.pronti-qua-slideshow .slide:nth-child(2) {
+    background-image: url(/prontiqua/wp-content/themes/pronti-qua-fse/assets/img/slide-supporto.jpeg);
+}
+
+.pronti-qua-slideshow .slide:nth-child(3) {
+    background-image: url(/prontiqua/wp-content/themes/pronti-qua-fse/assets/img/slide-mercatini.jpeg);
+}
+
+.pronti-qua-slideshow .slide:nth-child(4) {
+    background-image: url(/prontiqua/wp-content/themes/pronti-qua-fse/assets/img/slide-medici.jpeg);
+}
+
+.pronti-qua-slideshow .slide:nth-child(5) {
+    background-image: url(/prontiqua/wp-content/themes/pronti-qua-fse/assets/img/slide-crav.jpeg);
 }
 
 /* Indicatori */
@@ -125,64 +136,4 @@
     .pronti-qua-slideshow .slide {
         transition: none;
     }
-
-    .pronti-qua-slideshow .slideshow-indicators .indicator {
-        transition: none;
-    }
 }
-
-/* Focus states per keyboard navigation */
-.pronti-qua-slideshow .slideshow-container:focus {
-    outline: 2px solid #6f8a2b;
-    outline-offset: 2px;
-}
-
-/* Loading state */
-.pronti-qua-slideshow .slideshow-container.loading {
-    position: relative;
-}
-
-.pronti-qua-slideshow .slideshow-container.loading::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 40px;
-    height: 40px;
-    border: 3px solid rgba(111, 138, 43, 0.2);
-    border-top-color: #6f8a2b;
-    border-radius: 50%;
-    animation: slideshow-spinner 1s linear infinite;
-    z-index: 5;
-}
-
-@keyframes slideshow-spinner {
-    to {
-        transform: translate(-50%, -50%) rotate(360deg);
-    }
-}
-
-/* Hover effects per migliorare UX */
-.pronti-qua-slideshow .slideshow-container:hover .slide.active {
-    transform: scale(1.01);
-    transition: transform 0.3s ease;
-}
-
-/* Print styles */
-@media print {
-    .pronti-qua-slideshow .slideshow-indicators {
-        display: none;
-    }
-
-    .pronti-qua-slideshow .slide {
-        opacity: 1 !important;
-        position: relative !important;
-        page-break-inside: avoid;
-    }
-
-    .pronti-qua-slideshow .slide:not(:first-child) {
-        display: none;
-    }
-}
-
