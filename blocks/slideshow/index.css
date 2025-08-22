@@ -1,0 +1,193 @@
+/**
+ * Editor styles for Pronti Qua Slideshow Block
+ */
+
+.pronti-qua-slideshow-editor {
+    border: 2px dashed #e2e8f0;
+    border-radius: 8px;
+    padding: 20px;
+    background: #f8fafc;
+}
+
+.pronti-qua-slideshow-editor .slideshow-preview {
+    position: relative;
+    background: white;
+    border: 1px solid #d1d5db;
+    margin-bottom: 20px;
+}
+
+.pronti-qua-slideshow-editor .slide-navigation {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.pronti-qua-slideshow-editor .slide-navigation .components-button {
+    min-height: 30px !important;
+    height: 30px !important;
+    padding: 0 12px !important;
+    font-size: 12px !important;
+}
+
+.pronti-qua-slideshow-editor .slide-editor {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 20px;
+}
+
+.pronti-qua-slideshow-editor .slide-editor h4 {
+    margin: 0 0 16px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.pronti-qua-slideshow-editor .components-text-control__input,
+.pronti-qua-slideshow-editor .components-textarea-control__input {
+    border-radius: 6px !important;
+    border: 1px solid #d1d5db !important;
+}
+
+.pronti-qua-slideshow-editor .components-text-control__input:focus,
+.pronti-qua-slideshow-editor .components-textarea-control__input:focus {
+    border-color: #6f8a2b !important;
+    box-shadow: 0 0 0 1px #6f8a2b !important;
+}
+
+.pronti-qua-slideshow-editor .components-select-control__input {
+    border-radius: 6px !important;
+    border: 1px solid #d1d5db !important;
+}
+
+.pronti-qua-slideshow-editor .components-select-control__input:focus {
+    border-color: #6f8a2b !important;
+    box-shadow: 0 0 0 1px #6f8a2b !important;
+}
+
+.pronti-qua-slideshow-editor .components-button.is-primary {
+    background-color: #6f8a2b !important;
+    border-color: #6f8a2b !important;
+}
+
+.pronti-qua-slideshow-editor .components-button.is-primary:hover {
+    background-color: #5d7424 !important;
+    border-color: #5d7424 !important;
+}
+
+.pronti-qua-slideshow-editor .components-button.is-destructive {
+    color: #dc2626 !important;
+    border-color: #dc2626 !important;
+}
+
+.pronti-qua-slideshow-editor .components-button.is-destructive:hover {
+    background-color: #dc2626 !important;
+    color: white !important;
+}
+
+/* Media upload area */
+.pronti-qua-slideshow-editor .media-upload-area {
+    border: 2px dashed #d1d5db;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    margin: 10px 0;
+    transition: border-color 0.3s ease;
+}
+
+.pronti-qua-slideshow-editor .media-upload-area:hover {
+    border-color: #6f8a2b;
+    background-color: #f0f9ff;
+}
+
+.pronti-qua-slideshow-editor .media-upload-area img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Inspector Controls */
+.pronti-qua-slideshow-editor .components-panel__body-title {
+    color: #1f2937 !important;
+    font-weight: 600 !important;
+}
+
+.pronti-qua-slideshow-editor .components-range-control__wrapper {
+    margin-bottom: 16px;
+}
+
+.pronti-qua-slideshow-editor .components-toggle-control {
+    margin-bottom: 16px;
+}
+
+.pronti-qua-slideshow-editor .components-toggle-control .components-toggle-control__label {
+    font-weight: 500;
+    color: #374151;
+}
+
+/* Preview slide styling */
+.pronti-qua-slideshow-editor .slideshow-preview .slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.pronti-qua-slideshow-editor .slideshow-preview .slide h4 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.pronti-qua-slideshow-editor .slideshow-preview .slide p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    opacity: 0.9;
+}
+
+/* Responsive editor */
+@media (max-width: 782px) {
+    .pronti-qua-slideshow-editor {
+        padding: 15px;
+    }
+
+    .pronti-qua-slideshow-editor .slide-editor {
+        padding: 15px;
+    }
+
+    .pronti-qua-slideshow-editor .slide-navigation .components-button {
+        min-height: 36px !important;
+        height: 36px !important;
+    }
+}
+
+/* Loading state */
+.pronti-qua-slideshow-editor.is-loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.pronti-qua-slideshow-editor.is-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #6f8a2b;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

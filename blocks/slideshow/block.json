@@ -1,0 +1,100 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "pronti-qua/slideshow",
+  "version": "1.0.0",
+  "title": "Slideshow Pronti Qua",
+  "category": "pronti-qua",
+  "icon": "slides",
+  "description": "Slideshow automatico personalizzabile per mostrare contenuti dell'associazione",
+  "keywords": ["slideshow", "slider", "carousel", "images"],
+  "textdomain": "pronti-qua",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "attributes": {
+    "slides": {
+      "type": "array",
+      "default": [
+        {
+          "title": "La nostra storia",
+          "content": "In memoria di Roberto e della sua determinazione",
+          "backgroundColor": "verde-primario",
+          "imageId": null,
+          "imageUrl": "",
+          "imageAlt": ""
+        },
+        {
+          "title": "Supporto psicologico",
+          "content": "Specialisti dedicati per pazienti e famiglie",
+          "backgroundColor": "rosa-accento",
+          "imageId": null,
+          "imageUrl": "",
+          "imageAlt": ""
+        },
+        {
+          "title": "Onde di Speranza",
+          "content": "Raccolta fondi per strumentazione medica",
+          "backgroundColor": "azzurro-secondario",
+          "imageId": null,
+          "imageUrl": "",
+          "imageAlt": ""
+        },
+        {
+          "title": "BussoLà",
+          "content": "Rete territoriale per l'assistenza oncologica",
+          "backgroundColor": "giallo-highlight",
+          "imageId": null,
+          "imageUrl": "",
+          "imageAlt": ""
+        }
+      ]
+    },
+    "height": {
+      "type": "number",
+      "default": 400
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": true
+    },
+    "interval": {
+      "type": "number",
+      "default": 4000
+    },
+    "showIndicators": {
+      "type": "boolean",
+      "default": false
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": "#f8fafc"
+    }
+  },
+  "supports": {
+    "align": ["left", "center", "right", "wide", "full"],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "color": {
+      "background": true,
+      "text": false,
+      "gradients": true
+    }
+  },
+  "example": {
+    "attributes": {
+      "slides": [
+        {
+          "title": "Esempio Slide",
+          "content": "Contenuto di esempio per l'anteprima",
+          "backgroundColor": "verde-primario",
+          "imageId": null,
+          "imageUrl": "",
+          "imageAlt": ""
+        }
+      ]
+    }
+  }
+}

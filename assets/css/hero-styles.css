@@ -1,0 +1,92 @@
+/* Rimuovi tutti i border-radius dal tema */
+
+/* Reset globale border-radius */
+* {
+    border-radius: 0 !important;
+}
+
+/* Specifico per elementi WordPress */
+.wp-block-button .wp-block-button__link,
+.wp-block-group,
+.wp-block-cover,
+.wp-block-image img,
+.wp-block-media-text,
+.wp-block-columns,
+.wp-block-column,
+.wp-element-button,
+.has-border-radius,
+.is-style-rounded,
+input[type="text"],
+input[type="email"],
+input[type="search"],
+input[type="password"],
+textarea,
+select,
+button {
+    border-radius: 0 !important;
+}
+
+/* Assicurati che anche gli pseudo-elementi non abbiano border-radius */
+*::before,
+*::after {
+    border-radius: 0 !important;
+}
+
+/* Per i blocchi che potrebbero avere border-radius inline */
+[style*="border-radius"] {
+    border-radius: 0 !important;
+}
+
+/* Hero specifico - mantieni pulito */
+.hero-slideshow-container {
+    border-radius: 0 !important;
+    box-shadow: none;
+}
+
+.hero-slideshow {
+    border-radius: 0 !important;
+}
+
+.hero-button-primary:hover .wp-block-button__link,
+.hero-button-secondary:hover .wp-block-button__link {
+    border-radius: 0 !important;
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+/* Responsive - mantieni tutto senza bordi arrotondati */
+@media (max-width: 768px) {
+    .wp-block-columns.alignwide {
+        flex-direction: column;
+    }
+
+    .wp-block-column {
+        flex-basis: 100% !important;
+    }
+
+    .hero-slideshow {
+        height: 300px !important;
+    }
+
+    .hero-slideshow-container {
+        margin-top: var(--wp--preset--spacing--lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-slideshow {
+        height: 250px !important;
+    }
+
+    .slide div {
+        padding: 1rem !important;
+    }
+
+    .slide h4 {
+        font-size: 1.2rem !important;
+    }
+
+    .slide p {
+        font-size: 0.9rem !important;
+    }
+}

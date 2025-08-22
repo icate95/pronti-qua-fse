@@ -70,16 +70,16 @@ require_once get_template_directory() . '/inc/custom-blocks.php';
 require_once get_template_directory() . '/inc/block-patterns.php';
 
 // Add block categories
-function pronti_qua_block_categories($categories) {
-    return array_merge(
-        $categories,
-        [
-            [
-                'slug' => 'pronti-qua-blocks',
-                'title' => __('Pronti Qua Blocks', 'pronti-qua'),
-                'icon' => 'heart',
-            ],
-        ]
-    );
-}
-add_filter('block_categories_all', 'pronti_qua_block_categories');
+// function pronti_qua_block_categories($categories) {
+//     return array_merge(
+//         $categories,
+//         [
+//             [
+//                 'slug' => 'pronti-qua-blocks',
+//                 'title' => __('Pronti Qua Blocks', 'pronti-qua'),
+//                 'icon' => 'heart',
+//             ],
+//         ]
+//     );
+// }
+// add_filter('block_categories_all', 'pronti_qua_block_categories');
