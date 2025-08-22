@@ -1,0 +1,59 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "pronti-qua/project-card",
+  "title": "Card Progetto",
+  "category": "pronti-qua",
+  "icon": "portfolio",
+  "description": "Card per visualizzare un progetto con immagine, descrizione e progresso",
+  "keywords": ["progetto", "card", "raccolta", "fondi"],
+  "textdomain": "pronti-qua",
+  "attributes": {
+    "projectTitle": {
+      "type": "string",
+      "default": "Nome Progetto"
+    },
+    "projectDescription": {
+      "type": "string",
+      "default": "Descrizione breve del progetto..."
+    },
+    "imageUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "currentAmount": {
+      "type": "number",
+      "default": 0
+    },
+    "targetAmount": {
+      "type": "number",
+      "default": 10000
+    },
+    "currency": {
+      "type": "string",
+      "default": "€"
+    },
+    "projectUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "category": {
+      "type": "string",
+      "default": "raccolta-fondi"
+    },
+    "status": {
+      "type": "string",
+      "default": "attivo",
+      "enum": ["attivo", "completato", "in-pausa"]
+    }
+  },
+  "supports": {
+    "align": true,
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css"
+}

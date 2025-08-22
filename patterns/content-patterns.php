@@ -144,36 +144,6 @@ register_block_pattern(
             <!-- /wp:group -->
         </div>
         <!-- /wp:column -->
-
-        <!-- wp:column -->
-        <div class="wp-block-column">
-            <!-- wp:group {"backgroundColor":"white","style":{"spacing":{"padding":{"top":"40px","bottom":"40px","left":"32px","right":"32px"}},"border":{"radius":"12px","width":"1px","color":"#e5e7eb"}},"layout":{"type":"constrained"}} -->
-            <div class="wp-block-group has-border-color has-white-background-color has-background" style="border-color:#e5e7eb;border-width:1px;border-radius:12px;padding-top:40px;padding-right:32px;padding-bottom:40px;padding-left:32px">
-                <!-- wp:heading {"textAlign":"center","level":3,"fontSize":"xxx-large"} -->
-                <h3 class="wp-block-heading has-text-align-center has-xxx-large-font-size">📋</h3>
-                <!-- /wp:heading -->
-
-                <!-- wp:heading {"textAlign":"center","level":4,"fontSize":"large","textColor":"verde-primario","style":{"spacing":{"margin":{"top":"16px","bottom":"16px"}}}} -->
-                <h4 class="wp-block-heading has-text-align-center has-verde-primario-color has-text-color has-large-font-size" style="margin-top:16px;margin-bottom:16px">Risorse Utili</h4>
-                <!-- /wp:heading -->
-
-                <!-- wp:paragraph {"align":"center","fontSize":"normal"} -->
-                <p class="has-text-align-center has-normal-font-size">Guide, documenti e informazioni pratiche per orientarsi nel percorso di cura.</p>
-                <!-- /wp:paragraph -->
-
-                <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"24px"}}}} -->
-                <div class="wp-block-buttons" style="margin-top:24px">
-                    <!-- wp:button {"backgroundColor":"azzurro-secondario","textColor":"white","style":{"border":{"radius":"6px"}},"fontSize":"small"} -->
-                    <div class="wp-block-button has-custom-font-size has-small-font-size">
-                        <a class="wp-block-button__link has-white-color has-azzurro-secondario-background-color has-text-color has-background wp-element-button" href="/aiuto/risorse" style="border-radius:6px">Esplora Risorse</a>
-                    </div>
-                    <!-- /wp:button -->
-                </div>
-                <!-- /wp:buttons -->
-            </div>
-            <!-- /wp:group -->
-        </div>
-        <!-- /wp:column -->
     </div>
     <!-- /wp:columns -->
 </div>

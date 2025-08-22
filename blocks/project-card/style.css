@@ -1,0 +1,201 @@
+
+.pronti-qua-project-card {
+    margin: 20px 0;
+}
+
+.project-card-container {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.project-card-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.project-image {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card-container:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.project-status {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+}
+
+.status-attivo {
+    background: rgba(34, 197, 94, 0.9);
+    color: white;
+}
+
+.status-completato {
+    background: rgba(59, 130, 246, 0.9);
+    color: white;
+}
+
+.status-in-pausa {
+    background: rgba(245, 158, 11, 0.9);
+    color: white;
+}
+
+.project-content {
+    padding: 24px;
+}
+
+.project-category {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--wp--preset--color--azzurro-secondario, #379db2);
+    margin-bottom: 8px;
+}
+
+.project-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--wp--preset--color--verde-primario, #6f8a2b);
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+}
+
+.project-description {
+    color: #6b7280;
+    line-height: 1.5;
+    margin: 0 0 20px 0;
+    font-size: 0.9rem;
+}
+
+.project-funding {
+    margin: 20px 0;
+    padding: 16px;
+    background: var(--wp--preset--color--light, #f8fafc);
+    border-radius: 8px;
+}
+
+.funding-amounts {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 0.875rem;
+}
+
+.funding-amounts .current {
+    font-weight: 700;
+    color: var(--wp--preset--color--verde-primario, #6f8a2b);
+}
+
+.funding-amounts .target {
+    color: #6b7280;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--wp--preset--color--azzurro-secondario, #379db2), var(--wp--preset--color--verde-primario, #6f8a2b));
+    border-radius: 4px;
+    transition: width 0.8s ease;
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.percentage {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--wp--preset--color--azzurro-secondario, #379db2);
+}
+
+.project-actions {
+    margin-top: 20px;
+}
+
+.project-link {
+    display: inline-block;
+    background: var(--wp--preset--color--azzurro-secondario, #379db2);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.project-link:hover {
+    background: var(--wp--preset--color--verde-primario, #6f8a2b);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .project-content {
+        padding: 20px 16px;
+    }
+
+    .project-title {
+        font-size: 1.125rem;
+    }
+
+    .project-description {
+        font-size: 0.875rem;
+    }
+
+    .funding-amounts {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .project-link {
+        width: 100%;
+        text-align: center;
+        padding: 12px 20px;
+    }
+}

@@ -1,100 +1,19 @@
-<!-- wp:group {"tagName":"header","backgroundColor":"white","className":"site-header","style":{"spacing":{"padding":{"top":"16px","bottom":"16px"}}},"layout":{"type":"constrained"}} -->
-<header class="wp-block-group site-header has-white-background-color has-background" style="padding-top:16px;padding-bottom:16px">
+<!-- wp:group {"tagName":"header","className":"site-header","style":{"spacing":{"padding":{"top":"16px","bottom":"16px"}}},"backgroundColor":"white","layout":{"type":"constrained"}} -->
+<header class="wp-block-group site-header has-white-background-color has-background"
+        style="padding-top:16px;padding-bottom:16px">
     <!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
     <div class="wp-block-group alignwide">
-        <!-- wp:site-logo {"width":120,"shouldSyncIcon":true} /-->
+        <!-- wp:site-logo {"width":120,"shouldSyncIcon":false} /-->
 
-        <!-- wp:navigation {"ref":123,"textColor":"dark","overlayBackgroundColor":"white","overlayTextColor":"dark","className":"main-navigation","layout":{"type":"flex","setCascadingProperties":true,"justifyContent":"right"},"ariaLabel":"Menu principale","fontSize":"normal"} -->
-        <nav class="wp-block-navigation main-navigation has-dark-color has-text-color has-normal-font-size" aria-label="Menu principale">
-            <!-- wp:navigation-link {"label":"CHI SIAMO","url":"#","kind":"custom","isTopLevelLink":true} -->
-            <li class="wp-block-navigation-item wp-block-navigation-link">
-                <a class="wp-block-navigation-item__content" href="#"><span class="wp-block-navigation-item__label">CHI SIAMO</span></a>
-
-                <!-- wp:navigation-submenu {"label":"","url":"","kind":"custom","isTopLevelItem":false} -->
-                <ul class="wp-block-navigation__submenu-container">
-                    <!-- wp:navigation-link {"label":"La Nostra Storia","url":"/la-nostra-storia","kind":"custom","isTopLevelLink":false} /-->
-                    <!-- wp:navigation-link {"label":"Missione e Valori","url":"/missione-valori","kind":"custom","isTopLevelLink":false} /-->
-                    <!-- wp:navigation-link {"label":"Il Team","url":"/team","kind":"custom","isTopLevelLink":false} /-->
-                    <!-- wp:navigation-link {"label":"Trasparenza","url":"/trasparenza","kind":"custom","isTopLevelLink":false} /-->
-                </ul>
-                <!-- /wp:navigation-submenu -->
-            </li>
-            <!-- /wp:navigation-link -->
-
-            <!-- wp:navigation-link {"label":"I NOSTRI PROGETTI","url":"/progetti","kind":"custom","isTopLevelLink":true,"className":"progetti-menu-item"} -->
-            <li class="wp-block-navigation-item progetti-menu-item wp-block-navigation-link">
-                <a class="wp-block-navigation-item__content" href="/progetti"><span class="wp-block-navigation-item__label">I NOSTRI PROGETTI ⭐</span></a>
-
-                <!-- wp:navigation-submenu {"label":"","url":"","kind":"custom","isTopLevelItem":false} -->
-                <ul class="wp-block-navigation__submenu-container">
-                    <!-- wp:navigation-link {"label":"Onde di Speranza","url":"/progetti/onde-di-speranza","kind":"custom","isTopLevelLink":false} /-->
-                    <!-- wp:navigation-link {"label":"Non Più Soli","url":"/progetti/non-piu-soli","kind":"custom","isTopLevelLink":false} /-->
-                    <!-- wp:navigation-link {"label":"Progetto Àncora","url":"/progetti/ancora","kind":"custom","isTopLevelLink":false} /-->
-                    <!-- wp:navigation-link {"label":"BussoLà","url":"/progetti/bussola","kind":"custom","isTopLevelLink":false} /-->
-                </ul>
-                <!-- /wp:navigation-submenu -->
-            </li>
-            <!-- /wp:navigation-link -->
-
-            <!-- wp:navigation-link {"label":"HAI BISOGNO DI AIUTO?","url":"/aiuto","kind":"custom","isTopLevelLink":true} -->
-            <li class="wp-block-navigation-item wp-block-navigation-link">
-                <a class="wp-block-navigation-item__content" href="/aiuto"><span class="wp-block-navigation-item__label">HAI BISOGNO DI AIUTO?</span></a>
-
-                <!-- wp:navigation-submenu {"label":"","url":"","kind":"custom","isTopLevelItem":false} -->
-                <ul class="wp-block-navigation__submenu-container">
-                    <!-- wp:navigation-link {"label":"Supporto per Pazienti","url":"/aiuto/pazienti","kind":"custom","isTopLevelLink":false} /-->
-                    <!-- wp:navigation-link {"label":"Supporto per Familiari","url":"/aiuto/familiari","kind":"custom","isTopLevelLink":false} /-->
-                    <!-- wp:navigation-link {"label":"Come Accedere ai Servizi","url":"/aiuto/accesso-servizi","kind":"custom","isTopLevelLink":false} /-->
-                    <!-- wp:navigation-link {"label":"Risorse Utili","url":"/aiuto/risorse","kind":"custom","isTopLevelLink":false} /-->
-                </ul>
-                <!-- /wp:navigation-submenu -->
-            </li>
-            <!-- /wp:navigation-link -->
-
-            <!-- wp:navigation-link {"label":"SOSTIENICI","url":"/sostienici","kind":"custom","isTopLevelLink":true,"className":"sostienici-menu-item"} -->
-            <li class="wp-block-navigation-item sostienici-menu-item wp-block-navigation-link">
-                <a class="wp-block-navigation-item__content" href="/sostienici"><span class="wp-block-navigation-item__label">SOSTIENICI</span></a>
-
-                <!-- wp:navigation-submenu {"label":"","url":"","kind":"custom","isTopLevelItem":false} -->
-                <ul class="wp-block-navigation__submenu-container">
-                    <!-- wp:navigation-link {"label":"💝 Dona Ora","url":"/dona","kind":"custom","isTopLevelLink":false,"className":"dona-menu-item"} /-->
-                    <!-- wp:navigation-link {"label":"Diventa Volontario","url":"/volontario","kind":"custom","isTopLevelLink":false} /-->
-                    <!-- wp:navigation-link {"label":"Diventa Socio","url":"/socio","kind":"custom","isTopLevelLink":false} /-->
-                    <!-- wp:navigation-link {"label":"5x1000","url":"/5x1000","kind":"custom","isTopLevelLink":false} /-->
-                    <!-- wp:navigation-link {"label":"Collabora con Noi","url":"/collabora","kind":"custom","isTopLevelLink":false} /-->
-                </ul>
-                <!-- /wp:navigation-submenu -->
-            </li>
-            <!-- /wp:navigation-link -->
-
-            <!-- wp:navigation-link {"label":"NEWS & EVENTI","url":"/news","kind":"custom","isTopLevelLink":true} -->
-            <li class="wp-block-navigation-item wp-block-navigation-link">
-                <a class="wp-block-navigation-item__content" href="/news"><span class="wp-block-navigation-item__label">NEWS & EVENTI</span></a>
-
-                <!-- wp:navigation-submenu {"label":"","url":"","kind":"custom","isTopLevelItem":false} -->
-                <ul class="wp-block-navigation__submenu-container">
-                    <!-- wp:navigation-link {"label":"Ultime Notizie","url":"/news","kind":"custom","isTopLevelLink":false} /-->
-                    <!-- wp:navigation-link {"label":"Eventi in Programma","url":"/eventi","kind":"custom","isTopLevelLink":false} /-->
-                    <!-- wp:navigation-link {"label":"Aggiornamenti Progetti","url":"/aggiornamenti","kind":"custom","isTopLevelLink":false} /-->
-                </ul>
-                <!-- /wp:navigation-submenu -->
-            </li>
-            <!-- /wp:navigation-link -->
-
-            <!-- wp:navigation-link {"label":"CONTATTI","url":"/contatti","kind":"custom","isTopLevelLink":true} /-->
-        </nav>
-        <!-- /wp:navigation -->
+        <!-- wp:navigation {"ref":892,"textColor":"dark","overlayBackgroundColor":"white","overlayTextColor":"dark","className":"wp-block-navigation main-navigation has-dark-color has-text-color has-normal-font-size","fontSize":"normal","layout":{"type":"flex","setCascadingProperties":true,"justifyContent":"right"},"ariaLabel":"Menu principale"} /-->
 
         <!-- wp:buttons {"className":"header-cta-buttons","style":{"spacing":{"margin":{"left":"24px"}}}} -->
         <div class="wp-block-buttons header-cta-buttons" style="margin-left:24px">
             <!-- wp:button {"backgroundColor":"rosa-accento","textColor":"white","className":"is-style-fill","fontSize":"small"} -->
-            <div class="wp-block-button has-custom-font-size is-style-fill has-small-font-size">
-                <a class="wp-block-button__link has-white-color has-rosa-accento-background-color has-text-color has-background wp-element-button" href="/dona">Dona Ora</a>
-            </div>
-            <!-- /wp:button -->
-        </div>
-        <!-- /wp:buttons -->
-    </div>
-    <!-- /wp:group -->
-</header>
+            <div class="wp-block-button is-style-fill"><a
+                    class="wp-block-button__link has-white-color has-rosa-accento-background-color has-text-color has-background has-small-font-size has-custom-font-size wp-element-button"
+                    href="/dona">Sostienici</a></div>
+            <!-- /wp:button --></div>
+        <!-- /wp:buttons --></div>
+    <!-- /wp:group --></header>
 <!-- /wp:group -->

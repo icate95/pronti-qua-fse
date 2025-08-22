@@ -27,6 +27,7 @@ register_block_pattern(
 
             <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"center"}} -->
             <div class="wp-block-group">
+
                 <!-- wp:html -->
                 <form class="newsletter-form" style="display: flex; gap: 12px; width: 100%; max-width: 400px;">
                     <input type="email" placeholder="La tua email" style="flex: 1; padding: 12px 16px; border: none; border-radius: 6px; font-size: 16px;" required>
@@ -37,7 +38,7 @@ register_block_pattern(
             <!-- /wp:group -->
 
             <!-- wp:paragraph {"align":"center","fontSize":"small","textColor":"white","style":{"spacing":{"margin":{"top":"16px"}},"elements":{"link":{"color":{"text":"var:preset|color|giallo-highlight"}}}}} -->
-            <p class="has-text-align-center has-white-color has-text-color has-link-color has-small-font-size" style="margin-top:16px">📧 Massimo 1 email al mese • <a href="/privacy">Privacy Policy</a></p>
+            <a href="/privacy">Privacy Policy</a></p>
             <!-- /wp:paragraph -->
         </div>
         <!-- /wp:group -->
@@ -174,7 +175,7 @@ register_block_pattern(
                 <!-- wp:paragraph {"fontSize":"medium","style":{"color":{"text":"var:preset|color|azzurro-secondario"},"typography":{"fontStyle":"italic"}}} -->
                 <p class="has-text-color has-medium-font-size" style="color:var(--wp--preset--color--azzurro-secondario);font-style:italic">"Nessuno dovrebbe affrontare da solo la malattia. Vogliamo essere la mano tesa che ognuno di noi vorrebbe trovare."</p>
                 <!-- /wp:paragraph -->
-                <cite>Roberto, Fondatore</cite>
+                <cite></cite>
             </blockquote>
             <!-- /wp:quote -->
 
