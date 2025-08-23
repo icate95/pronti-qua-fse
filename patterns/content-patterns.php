@@ -350,3 +350,169 @@ register_block_pattern(
 <!-- /wp:group -->',
     )
 );
+
+/**
+ * Block Patterns per Sezioni Cards Progetti/Eventi
+ * Inserire in functions.php o in un file separato
+ */
+    register_block_pattern(
+        'pronti-qua/progetti-homepage',
+        array(
+            'title'       => __('Sezione Progetti Homepage', 'pronti-qua'),
+            'description' => _x('Sezione progetti per homepage con grid responsive e scroll mobile', 'Pattern description', 'pronti-qua'),
+            'content'     => '<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"80px","bottom":"20px","left":"20px","right":"20px"}}},"backgroundColor":"bianco","layout":{"type":"constrained","contentSize":"1200px"}} -->
+                <div class="wp-block-group alignfull has-bianco-background-color has-background" style="padding-top:80px;padding-right:20px;padding-bottom:80px;padding-left:20px">
+                    <!-- wp:heading {"textAlign":"left","fontSize":"x-large","textColor":"nero-testo","style":{"spacing":{"margin":{"bottom":"16px"}}}} -->
+                    <h2 class="wp-block-heading has-text-align-left has-nero-testo-color has-text-color has-x-large-font-size" style="margin-bottom:16px">I nostri progetti</h2>
+                    <!-- /wp:heading -->
+
+                    <!-- wp:paragraph {"textAlign":"left","textColor":"grigio-testo","fontSize":"medium","style":{"spacing":{"margin":{"bottom":"40px"}}}} -->
+                    <p class="has-text-align-left has-grigio-testo-color has-text-color has-medium-font-size" style="margin-bottom:40px">Ogni progetto nasce da un bisogno reale e mira a creare un impatto concreto e duraturo nella vita di chi affronta la malattia.</p>
+                    <!-- /wp:paragraph -->
+
+                    <!-- wp:group {"className":"projects-container-desktop","layout":{"type":"constrained"}} -->
+                    <div class="wp-block-group projects-container-desktop">
+                        <!-- wp:query {"queryId":1,"query":{"perPage":4,"pages":0,"offset":0,"postType":"progetto","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false}} -->
+                        <div class="wp-block-query">
+                            <!-- wp:post-template {"layout":{"type":"grid","columnCount":4},"className":"projects-grid-desktop"} -->
+                            <!-- wp:group {"backgroundColor":"bianco","style":{"spacing":{"padding":{"top":"0px","bottom":"24px","left":"0px","right":"0px"}},"border":{"radius":"12px","width":"1px","color":"#e5e7eb"}},"layout":{"type":"constrained"},"className":"project-card"} -->
+                            <div class="wp-block-group project-card has-border-color has-bianco-background-color has-background" style="border-color:#e5e7eb;border-width:1px;border-radius:12px;padding-top:0px;padding-right:0px;padding-bottom:24px;padding-left:0px">
+                                <!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9","style":{"border":{"radius":{"topLeft":"12px","topRight":"12px"}}}} /-->
+                                <!-- wp:group {"style":{"spacing":{"padding":{"top":"20px","bottom":"0px","left":"20px","right":"20px"}}},"layout":{"type":"constrained"}} -->
+                                <div class="wp-block-group" style="padding-top:20px;padding-right:20px;padding-bottom:0px;padding-left:20px">
+                                    <!-- wp:post-title {"isLink":true,"fontSize":"large","textColor":"nero-testo","style":{"spacing":{"margin":{"bottom":"8px"}}}} /-->
+                                    <!-- wp:post-excerpt {"moreText":"","showMoreOnNewLine":false,"excerptLength":15,"fontSize":"small","textColor":"grigio-testo","style":{"spacing":{"margin":{"bottom":"16px"}}}} /-->
+                                </div>
+                                <!-- /wp:group -->
+                            </div>
+                            <!-- /wp:group -->
+                            <!-- /wp:post-template -->
+                        </div>
+                        <!-- /wp:query -->
+                    </div>
+                    <!-- /wp:group -->
+                </div>
+                <!-- /wp:group -->',
+            'categories'  => array('featured', 'query'),
+            'keywords'    => array('progetti', 'cards', 'homepage', 'responsive'),
+        )
+    );
+
+    register_block_pattern(
+        'pronti-qua/eventi-homepage',
+        array(
+            'title'       => __('Sezione Eventi Homepage', 'pronti-qua'),
+            'description' => _x('Sezione eventi per homepage con grid responsive, scroll mobile e pulsante "Vedi tutti"', 'Pattern description', 'pronti-qua'),
+            'content'     => '<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"80px","bottom":"20px","left":"20px","right":"20px"}}},"backgroundColor":"grigio-chiaro","layout":{"type":"constrained","contentSize":"1200px"}} -->
+<div class="wp-block-group alignfull has-grigio-chiaro-background-color has-background" style="padding-top:80px;padding-right:20px;padding-bottom:80px;padding-left:20px">
+    <!-- wp:heading {"textAlign":"left","fontSize":"x-large","textColor":"nero-testo","style":{"spacing":{"margin":{"bottom":"16px"}}}} -->
+    <h2 class="wp-block-heading has-text-align-left has-nero-testo-color has-text-color has-x-large-font-size" style="margin-bottom:16px">Prossimi eventi</h2>
+    <!-- /wp:heading -->
+
+    <!-- wp:group {"style":{"spacing":{"margin":{"bottom":"40px"}}},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"}} -->
+    <div class="wp-block-group" style="margin-bottom:40px">
+        <!-- wp:paragraph {"textAlign":"left","textColor":"grigio-testo","fontSize":"medium"} -->
+        <p class="has-text-align-left has-grigio-testo-color has-text-color has-medium-font-size">Scopri i nostri eventi: conferenze informative, gruppi di supporto e iniziative per la comunità.</p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:buttons {"className":"vedi-tutti-desktop"} -->
+        <div class="wp-block-buttons vedi-tutti-desktop">
+            <!-- wp:button {"backgroundColor":"nero-testo","textColor":"bianco","fontSize":"small","style":{"border":{"radius":"8px"},"spacing":{"padding":{"left":"24px","right":"24px","top":"12px","bottom":"12px"}}}} -->
+            <div class="wp-block-button has-custom-font-size has-small-font-size">
+                <a class="wp-block-button__link has-bianco-color has-nero-testo-background-color has-text-color has-background wp-element-button" href="/eventi" style="border-radius:8px;padding-top:12px;padding-right:24px;padding-bottom:12px;padding-left:24px">Vedi tutti</a>
+            </div>
+            <!-- /wp:button -->
+        </div>
+        <!-- /wp:buttons -->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- wp:group {"className":"events-container-desktop","layout":{"type":"constrained"}} -->
+    <div class="wp-block-group events-container-desktop">
+        <!-- wp:query {"queryId":3,"query":{"perPage":4,"pages":0,"offset":0,"postType":"evento","order":"asc","orderBy":"meta_value","author":"","search":"","exclude":[],"sticky":"","inherit":false,"meta_key":"event_date"}} -->
+        <div class="wp-block-query">
+            <!-- wp:post-template {"layout":{"type":"grid","columnCount":4},"className":"events-grid-desktop"} -->
+            <!-- wp:group {"backgroundColor":"bianco","style":{"spacing":{"padding":{"top":"0px","bottom":"24px","left":"0px","right":"0px"}},"border":{"radius":"12px","width":"1px","color":"#e5e7eb"}},"layout":{"type":"constrained"},"className":"event-card"} -->
+            <div class="wp-block-group event-card has-border-color has-bianco-background-color has-background" style="border-color:#e5e7eb;border-width:1px;border-radius:12px;padding-top:0px;padding-right:0px;padding-bottom:24px;padding-left:0px">
+                <!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9","style":{"border":{"radius":{"topLeft":"12px","topRight":"12px"}}}} /-->
+                <!-- wp:group {"style":{"spacing":{"padding":{"top":"20px","bottom":"0px","left":"20px","right":"20px"}}},"layout":{"type":"constrained"}} -->
+                <div class="wp-block-group" style="padding-top:20px;padding-right:20px;padding-bottom:0px;padding-left:20px">
+                    <!-- wp:post-title {"isLink":true,"fontSize":"large","textColor":"nero-testo","style":{"spacing":{"margin":{"bottom":"8px"}}}} /-->
+                    <!-- wp:post-excerpt {"moreText":"","showMoreOnNewLine":false,"excerptLength":15,"fontSize":"small","textColor":"grigio-testo","style":{"spacing":{"margin":{"bottom":"16px"}}}} /-->
+                </div>
+                <!-- /wp:group -->
+            </div>
+            <!-- /wp:group -->
+            <!-- /wp:post-template -->
+        </div>
+        <!-- /wp:query -->
+    </div>
+    <!-- /wp:group -->
+</div>
+<!-- /wp:group -->',
+            'categories'  => array('featured', 'query'),
+            'keywords'    => array('eventi', 'cards', 'homepage', 'responsive'),
+        )
+    );
+// }
+
+// Pattern generico per articoli/blog
+// function register_articoli_section_pattern() {
+    register_block_pattern(
+        'pronti-qua/articoli-homepage',
+        array(
+            'title'       => __('Sezione Articoli Homepage', 'pronti-qua'),
+            'description' => _x('Sezione articoli blog con stesso layout responsive delle altre sezioni', 'Pattern description', 'pronti-qua'),
+            'content'     => '<!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"80px","bottom":"20px","left":"20px","right":"20px"}}},"backgroundColor":"bianco","layout":{"type":"constrained","contentSize":"1200px"}} -->
+<div class="wp-block-group alignfull has-bianco-background-color has-background" style="padding-top:80px;padding-right:20px;padding-bottom:80px;padding-left:20px">
+    <!-- wp:heading {"textAlign":"left","fontSize":"x-large","textColor":"nero-testo","style":{"spacing":{"margin":{"bottom":"16px"}}}} -->
+    <h2 class="wp-block-heading has-text-align-left has-nero-testo-color has-text-color has-x-large-font-size" style="margin-bottom:16px">Ultimi articoli</h2>
+    <!-- /wp:heading -->
+
+    <!-- wp:group {"style":{"spacing":{"margin":{"bottom":"40px"}}},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap"}} -->
+    <div class="wp-block-group" style="margin-bottom:40px">
+        <!-- wp:paragraph {"textAlign":"left","textColor":"grigio-testo","fontSize":"medium"} -->
+        <p class="has-text-align-left has-grigio-testo-color has-text-color has-medium-font-size">Leggi i nostri articoli: consigli, storie di speranza e aggiornamenti dalla nostra comunità.</p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:buttons {"className":"vedi-tutti-desktop"} -->
+        <div class="wp-block-buttons vedi-tutti-desktop">
+            <!-- wp:button {"backgroundColor":"nero-testo","textColor":"bianco","fontSize":"small","style":{"border":{"radius":"8px"},"spacing":{"padding":{"left":"24px","right":"24px","top":"12px","bottom":"12px"}}}} -->
+            <div class="wp-block-button has-custom-font-size has-small-font-size">
+                <a class="wp-block-button__link has-bianco-color has-nero-testo-background-color has-text-color has-background wp-element-button" href="/blog" style="border-radius:8px;padding-top:12px;padding-right:24px;padding-bottom:12px;padding-left:24px">Vedi tutti</a>
+            </div>
+            <!-- /wp:button -->
+        </div>
+        <!-- /wp:buttons -->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- wp:group {"className":"articles-container-desktop","layout":{"type":"constrained"}} -->
+    <div class="wp-block-group articles-container-desktop">
+        <!-- wp:query {"queryId":5,"query":{"perPage":4,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false}} -->
+        <div class="wp-block-query">
+            <!-- wp:post-template {"layout":{"type":"grid","columnCount":4},"className":"articles-grid-desktop"} -->
+            <!-- wp:group {"backgroundColor":"bianco","style":{"spacing":{"padding":{"top":"0px","bottom":"24px","left":"0px","right":"0px"}},"border":{"radius":"12px","width":"1px","color":"#e5e7eb"}},"layout":{"type":"constrained"},"className":"article-card"} -->
+            <div class="wp-block-group article-card has-border-color has-bianco-background-color has-background" style="border-color:#e5e7eb;border-width:1px;border-radius:12px;padding-top:0px;padding-right:0px;padding-bottom:24px;padding-left:0px">
+                <!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9","style":{"border":{"radius":{"topLeft":"12px","topRight":"12px"}}}} /-->
+                <!-- wp:group {"style":{"spacing":{"padding":{"top":"20px","bottom":"0px","left":"20px","right":"20px"}}},"layout":{"type":"constrained"}} -->
+                <div class="wp-block-group" style="padding-top:20px;padding-right:20px;padding-bottom:0px;padding-left:20px">
+                    <!-- wp:post-title {"isLink":true,"fontSize":"large","textColor":"nero-testo","style":{"spacing":{"margin":{"bottom":"8px"}}}} /-->
+                    <!-- wp:post-excerpt {"moreText":"","showMoreOnNewLine":false,"excerptLength":15,"fontSize":"small","textColor":"grigio-testo","style":{"spacing":{"margin":{"bottom":"16px"}}}} /-->
+                    <!-- wp:post-date {"fontSize":"x-small","textColor":"grigio-testo","style":{"spacing":{"margin":{"bottom":"0px"}}}} /-->
+                </div>
+                <!-- /wp:group -->
+            </div>
+            <!-- /wp:group -->
+            <!-- /wp:post-template -->
+        </div>
+        <!-- /wp:query -->
+    </div>
+    <!-- /wp:group -->
+</div>
+<!-- /wp:group -->',
+            'categories'  => array('featured', 'query'),
+            'keywords'    => array('articoli', 'blog', 'cards', 'homepage'),
+        )
+    );
+?>

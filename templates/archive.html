@@ -1,0 +1,243 @@
+<!-- templates/archive.html -->
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","style":{"spacing":{"padding":{"top":"40px","bottom":"80px","left":"20px","right":"20px"}}},"layout":{"type":"constrained","contentSize":"1200px"}} -->
+<main class="wp-block-group" style="padding-top:40px;padding-right:20px;padding-bottom:80px;padding-left:20px">
+
+    <!-- HERO SECTION -->
+    <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"60px","bottom":"60px","left":"20px","right":"20px"},"margin":{"bottom":"60px"}}},"backgroundColor":"grigio-chiaro","layout":{"type":"constrained","contentSize":"800px"}} -->
+    <div class="wp-block-group alignfull has-grigio-chiaro-background-color has-background" style="margin-bottom:60px;padding-top:60px;padding-right:20px;padding-bottom:60px;padding-left:20px">
+        <!-- wp:query-title {"type":"archive","textAlign":"center","fontSize":"xx-large","textColor":"nero-testo","style":{"spacing":{"margin":{"bottom":"16px"}}}} /-->
+
+        <!-- wp:term-description {"textAlign":"center","textColor":"grigio-testo","fontSize":"large"} /-->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- FILTRI E RICERCA -->
+    <!-- wp:group {"style":{"spacing":{"margin":{"bottom":"40px"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
+    <div class="wp-block-group" style="margin-bottom:40px">
+        <!-- CATEGORIE -->
+        <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap"}} -->
+        <div class="wp-block-group">
+            <!-- wp:buttons -->
+            <div class="wp-block-buttons">
+                <!-- wp:button {"backgroundColor":"blu-primario","textColor":"bianco","className":"filter-btn active","style":{"border":{"width":"2px","color":"var:preset|color|blu-primario"}},"fontSize":"small"} -->
+                <div class="wp-block-button filter-btn active has-custom-font-size has-small-font-size">
+                    <a class="wp-block-button__link has-bianco-color has-blu-primario-background-color has-text-color has-background has-border-color wp-element-button" href="#" data-filter="tutti">Tutti gli Articoli</a>
+                </div>
+                <!-- /wp:button -->
+            </div>
+            <!-- /wp:buttons -->
+
+            <!-- wp:buttons -->
+            <div class="wp-block-buttons">
+                <!-- wp:button {"backgroundColor":"transparent","textColor":"verde-primario","className":"filter-btn","style":{"border":{"width":"2px","color":"var:preset|color|verde-primario"}},"fontSize":"small"} -->
+                <div class="wp-block-button filter-btn has-custom-font-size has-small-font-size">
+                    <a class="wp-block-button__link has-verde-primario-color has-transparent-background-color has-text-color has-background has-border-color wp-element-button" href="#" data-filter="notizie">Notizie</a>
+                </div>
+                <!-- /wp:button -->
+            </div>
+            <!-- /wp:buttons -->
+
+            <!-- wp:buttons -->
+            <div class="wp-block-buttons">
+                <!-- wp:button {"backgroundColor":"transparent","textColor":"rosa-accento","className":"filter-btn","style":{"border":{"width":"2px","color":"var:preset|color|rosa-accento"}},"fontSize":"small"} -->
+                <div class="wp-block-button filter-btn has-custom-font-size has-small-font-size">
+                    <a class="wp-block-button__link has-rosa-accento-color has-transparent-background-color has-text-color has-background has-border-color wp-element-button" href="#" data-filter="storie">Storie</a>
+                </div>
+                <!-- /wp:button -->
+            </div>
+            <!-- /wp:buttons -->
+
+            <!-- wp:buttons -->
+            <div class="wp-block-buttons">
+                <!-- wp:button {"backgroundColor":"transparent","textColor":"viola-secondario","className":"filter-btn","style":{"border":{"width":"2px","color":"var:preset|color|viola-secondario"}},"fontSize":"small"} -->
+                <div class="wp-block-button filter-btn has-custom-font-size has-small-font-size">
+                    <a class="wp-block-button__link has-viola-secondario-color has-transparent-background-color has-text-color has-background has-border-color wp-element-button" href="#" data-filter="consigli">Consigli</a>
+                </div>
+                <!-- /wp:button -->
+            </div>
+            <!-- /wp:buttons -->
+        </div>
+        <!-- /wp:group -->
+
+        <!-- BARRA DI RICERCA -->
+        <!-- wp:group {"className":"archive-search","layout":{"type":"flex","justifyContent":"flex-end"}} -->
+        <div class="wp-block-group archive-search">
+            <!-- wp:search {"label":"Cerca articoli","showLabel":false,"placeholder":"Cerca articoli...","width":300,"widthUnit":"px","buttonText":"Cerca","buttonPosition":"button-inside","buttonUseIcon":true,"style":{"border":{"radius":"8px"}}} /-->
+        </div>
+        <!-- /wp:group -->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- GRID ARTICOLI -->
+    <!-- wp:group {"align":"wide","layout":{"type":"constrained"}} -->
+    <div class="wp-block-group alignwide">
+        <!-- wp:query {"queryId":0,"query":{"perPage":6,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true}} -->
+        <div class="wp-block-query">
+            <!-- wp:post-template {"layout":{"type":"grid","columnCount":3},"className":"articles-archive-grid"} -->
+            <!-- wp:group {"backgroundColor":"bianco","style":{"spacing":{"padding":{"top":"0px","bottom":"32px","left":"0px","right":"0px"}},"border":{"radius":"12px","width":"1px","color":"#e5e7eb"}},"layout":{"type":"constrained"},"className":"article-card archive-card"} -->
+            <div class="wp-block-group article-card archive-card has-border-color has-bianco-background-color has-background" style="border-color:#e5e7eb;border-width:1px;border-radius:12px;padding-top:0px;padding-right:0px;padding-bottom:32px;padding-left:0px">
+                <!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9","style":{"border":{"radius":{"topLeft":"12px","topRight":"12px"}}}} /-->
+
+                <!-- wp:group {"style":{"spacing":{"padding":{"top":"24px","bottom":"0px","left":"24px","right":"24px"}}},"layout":{"type":"constrained"}} -->
+                <div class="wp-block-group" style="padding-top:24px;padding-right:24px;padding-bottom:0px;padding-left:24px">
+
+                    <!-- CATEGORIA E DATA -->
+                    <!-- wp:group {"style":{"spacing":{"margin":{"bottom":"12px"}}},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap","verticalAlignment":"center"}} -->
+                    <div class="wp-block-group" style="margin-bottom:12px">
+                        <!-- wp:post-terms {"term":"category","fontSize":"x-small","style":{"elements":{"link":{"color":{"text":"var:preset|color|blu-primario"}}}}} /-->
+                        <!-- wp:post-date {"fontSize":"x-small","textColor":"grigio-testo"} /-->
+                    </div>
+                    <!-- /wp:group -->
+
+                    <!-- wp:post-title {"isLink":true,"fontSize":"large","textColor":"nero-testo","style":{"spacing":{"margin":{"bottom":"12px"}}}} /-->
+
+                    <!-- wp:post-excerpt {"moreText":"Leggi tutto","showMoreOnNewLine":false,"excerptLength":20,"fontSize":"small","textColor":"grigio-testo","style":{"spacing":{"margin":{"bottom":"20px"}}}} /-->
+
+                    <!-- AUTORE E READ TIME -->
+                    <!-- wp:group {"style":{"spacing":{"margin":{"bottom":"16px"}}},"layout":{"type":"flex","justifyContent":"space-between","flexWrap":"wrap","verticalAlignment":"center"}} -->
+                    <div class="wp-block-group" style="margin-bottom:16px">
+                        <!-- wp:post-author {"showAvatar":false,"fontSize":"x-small","textColor":"grigio-testo"} /-->
+                        <!-- wp:html -->
+                        <span class="read-time" style="font-size: 12px; color: var(--wp--preset--color--grigio-testo);">5 min di lettura</span>
+                        <!-- /wp:html -->
+                    </div>
+                    <!-- /wp:group -->
+
+                    <!-- TAGS -->
+                    <!-- wp:post-terms {"term":"post_tag","fontSize":"x-small","style":{"spacing":{"margin":{"bottom":"20px"}},"elements":{"link":{"color":{"text":"var:preset|color|grigio-testo"}}}},"textColor":"grigio-testo"} /-->
+
+                    <!-- CTA BUTTON -->
+                    <!-- wp:buttons -->
+                    <div class="wp-block-buttons">
+                        <!-- wp:button {"backgroundColor":"transparent","textColor":"blu-primario","className":"outline-button","style":{"border":{"width":"2px","color":"var:preset|color|blu-primario","radius":"6px"},"spacing":{"padding":{"left":"16px","right":"16px","top":"8px","bottom":"8px"}}},"fontSize":"small","width":100} -->
+                        <div class="wp-block-button outline-button has-custom-width wp-block-button__width-100 has-custom-font-size has-small-font-size">
+                            <a class="wp-block-button__link has-blu-primario-color has-transparent-background-color has-text-color has-background has-border-color wp-element-button" style="border-color:var(--wp--preset--color--blu-primario);border-radius:6px;border-width:2px;padding-top:8px;padding-right:16px;padding-bottom:8px;padding-left:16px">Leggi l'articolo</a>
+                        </div>
+                        <!-- /wp:button -->
+                    </div>
+                    <!-- /wp:buttons -->
+                </div>
+                <!-- /wp:group -->
+            </div>
+            <!-- /wp:group -->
+            <!-- /wp:post-template -->
+
+            <!-- wp:query-pagination {"layout":{"type":"flex","justifyContent":"center"},"fontSize":"medium","style":{"spacing":{"margin":{"top":"60px"}}}} -->
+            <!-- wp:query-pagination-previous /-->
+            <!-- wp:query-pagination-numbers /-->
+            <!-- wp:query-pagination-next /-->
+            <!-- /wp:query-pagination -->
+
+            <!-- wp:query-no-results -->
+            <!-- wp:group {"style":{"spacing":{"padding":{"top":"60px","bottom":"60px"}}},"layout":{"type":"constrained"}} -->
+            <div class="wp-block-group" style="padding-top:60px;padding-bottom:60px">
+                <!-- wp:heading {"textAlign":"center","fontSize":"large","textColor":"grigio-testo"} -->
+                <h2 class="wp-block-heading has-text-align-center has-grigio-testo-color has-text-color has-large-font-size">Nessun articolo trovato</h2>
+                <!-- /wp:heading -->
+                <!-- wp:paragraph {"textAlign":"center","textColor":"grigio-testo"} -->
+                <p class="has-text-align-center has-grigio-testo-color has-text-color">Prova a modificare i filtri di ricerca o a cercare qualcosa di diverso.</p>
+                <!-- /wp:paragraph -->
+                <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"24px"}}}} -->
+                <div class="wp-block-buttons" style="margin-top:24px">
+                    <!-- wp:button {"backgroundColor":"blu-primario","textColor":"bianco","fontSize":"small"} -->
+                    <div class="wp-block-button has-custom-font-size has-small-font-size">
+                        <a class="wp-block-button__link has-bianco-color has-blu-primario-background-color has-text-color has-background wp-element-button" href="/">Torna alla homepage</a>
+                    </div>
+                    <!-- /wp:button -->
+                </div>
+                <!-- /wp:buttons -->
+            </div>
+            <!-- /wp:group -->
+            <!-- /wp:query-no-results -->
+        </div>
+        <!-- /wp:query -->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- NEWSLETTER BLOG -->
+    <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"60px","bottom":"60px","left":"20px","right":"20px"},"margin":{"top":"80px"}}},"backgroundColor":"blu-primario","textColor":"bianco","layout":{"type":"constrained","contentSize":"800px"}} -->
+    <div class="wp-block-group alignfull has-bianco-color has-blu-primario-background-color has-text-color has-background" style="margin-top:80px;padding-top:60px;padding-right:20px;padding-bottom:60px;padding-left:20px">
+        <!-- wp:heading {"textAlign":"center","fontSize":"x-large","style":{"spacing":{"margin":{"bottom":"16px"}}}} -->
+        <h2 class="wp-block-heading has-text-align-center has-x-large-font-size" style="margin-bottom:16px">Resta aggiornato</h2>
+        <!-- /wp:heading -->
+
+        <!-- wp:paragraph {"textAlign":"center","fontSize":"medium","style":{"spacing":{"margin":{"bottom":"32px"}}}} -->
+        <p class="has-text-align-center has-medium-font-size" style="margin-bottom:32px">Iscriviti alla nostra newsletter per ricevere storie di speranza, consigli utili e aggiornamenti sui nostri progetti.</p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:html -->
+        <form class="newsletter-blog-form">
+            <div class="newsletter-input-group">
+                <input type="email" placeholder="La tua email" class="newsletter-input" required>
+                <button type="submit" class="newsletter-button">Iscriviti al blog</button>
+            </div>
+            <label class="privacy-checkbox">
+                <input type="checkbox" required>
+                <span class="checkmark"></span>
+                Accetto la privacy policy e il trattamento dei dati
+            </label>
+        </form>
+        <style>
+            .newsletter-blog-form .newsletter-input-group {
+                display: flex;
+                gap: 12px;
+                margin-bottom: 16px;
+                max-width: 500px;
+                margin: 0 auto 16px;
+            }
+            .newsletter-blog-form .newsletter-input {
+                flex: 1;
+                padding: 12px 16px;
+                border: 2px solid rgba(255,255,255,0.3);
+                border-radius: 8px;
+                font-size: 16px;
+                background: rgba(255,255,255,0.1);
+                color: white;
+            }
+            .newsletter-blog-form .newsletter-input::placeholder {
+                color: rgba(255,255,255,0.7);
+            }
+            .newsletter-blog-form .newsletter-input:focus {
+                outline: none;
+                border-color: rgba(255,255,255,0.6);
+                background: rgba(255,255,255,0.15);
+            }
+            .newsletter-blog-form .newsletter-button {
+                background: white;
+                color: var(--wp--preset--color--blu-primario);
+                border: none;
+                padding: 12px 24px;
+                border-radius: 8px;
+                font-size: 16px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-weight: 600;
+            }
+            .newsletter-blog-form .newsletter-button:hover {
+                background: rgba(255,255,255,0.9);
+                transform: translateY(-1px);
+            }
+            .newsletter-blog-form .privacy-checkbox {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                font-size: 14px;
+                color: rgba(255,255,255,0.9);
+            }
+            @media (max-width: 768px) {
+                .newsletter-blog-form .newsletter-input-group {
+                    flex-direction: column;
+                }
+            }
+        </style>
+        <!-- /wp:html -->
+    </div>
+    <!-- /wp:group -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->

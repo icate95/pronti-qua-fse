@@ -1,201 +1,340 @@
+<!-- templates/single-progetto.html - CARICAMENTO DIRETTO DAL BACKEND -->
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
 
-<!-- wp:group {"tagName":"main","layout":{"type":"constrained"}} -->
-<main class="wp-block-group">
-    <!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"bottom":"40px"}}},"layout":{"type":"constrained"}} -->
-    <div class="wp-block-group alignwide" style="margin-bottom:40px">
-        <!-- wp:group {"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"left"},"style":{"spacing":{"margin":{"bottom":"24px"}}}} -->
-        <div class="wp-block-group" style="margin-bottom:24px">
-            <!-- wp:paragraph {"fontSize":"small"} -->
-            <p class="has-small-font-size">
-                <a href="/progetti">← Tutti i Progetti</a> / <span style="color: var(--wp--preset--color--gray-500);">Progetto Corrente</span>
-            </p>
-            <!-- /wp:paragraph -->
-        </div>
-        <!-- /wp:group -->
+<!-- wp:group {"tagName":"main","style":{"spacing":{"padding":{"top":"20px","bottom":"80px","left":"20px","right":"20px"}}},"layout":{"type":"constrained","contentSize":"1200px"}} -->
+<main class="wp-block-group" style="padding-top:20px;padding-right:20px;padding-bottom:80px;padding-left:20px">
+
+    <!-- BREADCRUMB -->
+    <!-- wp:group {"style":{"spacing":{"margin":{"bottom":"20px"}}},"layout":{"type":"constrained"}} -->
+    <div class="wp-block-group" style="margin-bottom:20px">
+        <!-- wp:paragraph {"fontSize":"small","textColor":"grigio-testo"} -->
+        <p class="has-grigio-testo-color has-text-color has-small-font-size">
+            <a href="/progetti">tutti i progetti</a> / <!-- wp:post-title {"level":0,"isLink":false,"fontSize":"small","style":{"display":{"all":"inline"}}} /-->
+        </p>
+        <!-- /wp:paragraph -->
     </div>
     <!-- /wp:group -->
 
-    <!-- wp:post-featured-image {"align":"wide","aspectRatio":"16/9","style":{"border":{"radius":"12px"}}} /-->
+    <!-- HERO IMAGE -->
+    <!-- wp:post-featured-image {"align":"full","aspectRatio":"21/9","style":{"border":{"radius":"0px"}}} /-->
 
-    <!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"40px","bottom":"40px"}}},"layout":{"type":"constrained","contentSize":"800px"}} -->
-    <div class="wp-block-group alignwide" style="margin-top:40px;margin-bottom:40px">
-        <!-- wp:post-title {"textAlign":"center","level":1,"fontSize":"xx-large","textColor":"verde-primario"} /-->
+    <!-- CONTENT LAYOUT -->
+    <!-- wp:columns {"align":"wide","style":{"spacing":{"margin":{"top":"40px"},"blockGap":{"top":"40px","left":"60px"}}}} -->
+    <div class="wp-block-columns alignwide" style="margin-top:40px">
 
-        <!-- wp:post-excerpt {"textAlign":"center","fontSize":"large","style":{"spacing":{"margin":{"top":"16px","bottom":"32px"}}}} /-->
+        <!-- MAIN CONTENT COLUMN -->
+        <!-- wp:column {"width":"70%"} -->
+        <div class="wp-block-column" style="flex-basis:70%">
 
-        <!-- wp:group {"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"},"style":{"spacing":{"blockGap":"24px","margin":{"bottom":"40px"}}}} -->
-        <div class="wp-block-group" style="margin-bottom:40px">
-            <!-- wp:group {"backgroundColor":"light","style":{"spacing":{"padding":{"top":"8px","bottom":"8px","left":"16px","right":"16px"}},"border":{"radius":"20px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-            <div class="wp-block-group has-light-background-color has-background" style="border-radius:20px;padding-top:8px;padding-right:16px;padding-bottom:8px;padding-left:16px">
-                <!-- wp:paragraph {"fontSize":"small","style":{"spacing":{"margin":{"top":"0px","bottom":"0px"}}}} -->
-                <p class="has-small-font-size" style="margin-top:0px;margin-bottom:0px">🎯 <strong>Categoria:</strong> Raccolta Fondi</p>
-                <!-- /wp:paragraph -->
+            <!-- DATE BADGE (con PHP diretto) -->
+            <!-- wp:html -->
+            <?php
+            $start_date = get_post_meta(get_the_ID(), 'project_start_date', true);
+            $status = get_post_meta(get_the_ID(), 'project_status', true);
+
+            $badge_text = 'Progetto Attivo';
+            if ($start_date) {
+                $date_formatted = date_i18n('j F Y', strtotime($start_date));
+                $badge_text = "Avviato il {$date_formatted}";
+            } elseif ($status) {
+                $status_labels = [
+                    'attivo' => 'Progetto Attivo',
+            'completato' => 'Progetto Completato',
+            'in-pausa' => 'In Pausa',
+            'pianificazione' => 'In Pianificazione'
+            ];
+            $badge_text = $status_labels[$status] ?? 'Progetto';
+            }
+            ?>
+            <div class="project-date-badge-container" style="margin-bottom: 16px;">
+                <span class="project-date-badge"><?php echo esc_html($badge_text); ?></span>
             </div>
-            <!-- /wp:group -->
+            <!-- /wp:html -->
 
-            <!-- wp:group {"backgroundColor":"light","style":{"spacing":{"padding":{"top":"8px","bottom":"8px","left":"16px","right":"16px"}},"border":{"radius":"20px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-            <div class="wp-block-group has-light-background-color has-background" style="border-radius:20px;padding-top:8px;padding-right:16px;padding-bottom:8px;padding-left:16px">
-                <!-- wp:paragraph {"fontSize":"small","style":{"spacing":{"margin":{"top":"0px","bottom":"0px"}}}} -->
-                <p class="has-small-font-size" style="margin-top:0px;margin-bottom:0px">📅 <strong>Inizio:</strong> Gennaio 2024</p>
-                <!-- /wp:paragraph -->
-            </div>
-            <!-- /wp:group -->
+            <!-- POST TITLE -->
+            <!-- wp:post-title {"level":1,"fontSize":"xx-large","textColor":"nero-testo","style":{"spacing":{"margin":{"bottom":"20px"}}}} /-->
 
-            <!-- wp:group {"backgroundColor":"light","style":{"spacing":{"padding":{"top":"8px","bottom":"8px","left":"16px","right":"16px"}},"border":{"radius":"20px"}},"layout":{"type":"flex","flexWrap":"nowrap"}} -->
-            <div class="wp-block-group has-light-background-color has-background" style="border-radius:20px;padding-top:8px;padding-right:16px;padding-bottom:8px;padding-left:16px">
-                <!-- wp:paragraph {"fontSize":"small","style":{"spacing":{"margin":{"top":"0px","bottom":"0px"}}}} -->
-                <p class="has-small-font-size" style="margin-top:0px;margin-bottom:0px">✅ <strong>Stato:</strong> Attivo</p>
-                <!-- /wp:paragraph -->
-            </div>
-            <!-- /wp:group -->
-        </div>
-        <!-- /wp:group -->
-    </div>
-    <!-- /wp:group -->
+            <!-- POST EXCERPT -->
+            <!-- wp:post-excerpt {"fontSize":"large","textColor":"grigio-testo","style":{"spacing":{"margin":{"bottom":"30px"}}}} /-->
 
-    <!-- wp:columns {"align":"wide","style":{"spacing":{"blockGap":"48px"}}} -->
-    <div class="wp-block-columns alignwide">
-        <!-- wp:column {"width":"60%"} -->
-        <div class="wp-block-column" style="flex-basis:60%">
-            <!-- wp:post-content {"align":"full"} /-->
+            <!-- POST CONTENT -->
+            <!-- wp:post-content {"align":"full","layout":{"type":"constrained"}} /-->
 
-            <!-- wp:group {"style":{"spacing":{"margin":{"top":"48px"}}},"layout":{"type":"constrained"}} -->
-            <div class="wp-block-group" style="margin-top:48px">
-                <!-- wp:heading {"fontSize":"x-large","textColor":"azzurro-secondario"} -->
-                <h2 class="wp-block-heading has-azzurro-secondario-color has-text-color has-x-large-font-size">Come Partecipare</h2>
-                <!-- /wp:heading -->
-
-                <!-- wp:paragraph -->
-                <p>Puoi supportare questo progetto in diversi modi:</p>
-                <!-- /wp:paragraph -->
-
-                <!-- wp:list -->
-                <ul>
-                    <!-- wp:list-item -->
-                    <li><strong>Donazione diretta:</strong> Contribuisci con l'importo che preferisci</li>
-                    <!-- /wp:list-item -->
-                    <!-- wp:list-item -->
-                    <li><strong>Condivisione:</strong> Aiutaci a diffondere il progetto sui social</li>
-                    <!-- /wp:list-item -->
-                    <!-- wp:list-item -->
-                    <li><strong>Volontariato:</strong> Partecipa attivamente alle nostre iniziative</li>
-                    <!-- /wp:list-item -->
-                </ul>
-                <!-- /wp:list -->
-
-                <!-- wp:buttons {"style":{"spacing":{"margin":{"top":"32px"}}}} -->
-                <div class="wp-block-buttons" style="margin-top:32px">
-                    <!-- wp:button {"backgroundColor":"rosa-accento","style":{"border":{"radius":"8px"}},"fontSize":"medium"} -->
-                    <div class="wp-block-button has-custom-font-size has-medium-font-size">
-                        <a class="wp-block-button__link has-rosa-accento-background-color has-background wp-element-button" href="/dona" style="border-radius:8px">💝 Dona per questo Progetto</a>
-                    </div>
-                    <!-- /wp:button -->
-
-                    <!-- wp:button {"backgroundColor":"transparent","textColor":"verde-primario","style":{"border":{"radius":"8px","color":"var:preset|color|verde-primario","width":"2px"}},"className":"is-style-outline"} -->
-                    <div class="wp-block-button is-style-outline">
-                        <a class="wp-block-button__link has-verde-primario-color has-transparent-background-color has-text-color has-background has-border-color wp-element-button" href="/volontario" style="border-radius:8px">🤲 Diventa Volontario</a>
-                    </div>
-                    <!-- /wp:button -->
+            <!-- SEZIONE PARTNER (se presente) -->
+            <!-- wp:html -->
+            <?php
+            $partners = get_post_meta(get_the_ID(), 'project_partners', true);
+            if ($partners):
+            ?>
+            <div class="project-partners-section" style="margin-top: 40px; margin-bottom: 30px;">
+                <h3 style="color: var(--wp--preset--color--nero-testo, #1f2937); font-size: 1.5em; margin-bottom: 16px;">Partner e Collaborazioni</h3>
+                <div style="background: #f9fafb; padding: 20px; border-radius: 8px; border-left: 4px solid var(--wp--preset--color--blu-primario, #2563eb);">
+                    <p style="margin: 0; white-space: pre-line; line-height: 1.6;"><?php echo esc_html($partners); ?></p>
                 </div>
-                <!-- /wp:buttons -->
             </div>
-            <!-- /wp:group -->
+            <?php endif; ?>
+            <!-- /wp:html -->
+
+            <!-- SEZIONE VOLONTARI (se presente) -->
+            <!-- wp:html -->
+            <?php
+            $volunteers = get_post_meta(get_the_ID(), 'volunteers_needed', true);
+            if ($volunteers):
+            ?>
+            <div class="project-volunteers-section" style="margin-top: 30px; margin-bottom: 30px;">
+                <h3 style="color: var(--wp--preset--color--nero-testo, #1f2937); font-size: 1.5em; margin-bottom: 16px;">Cerchiamo Volontari</h3>
+                <div style="background: #fef3c7; padding: 20px; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                    <p style="margin: 0 0 16px 0; white-space: pre-line; line-height: 1.6;"><?php echo esc_html($volunteers); ?></p>
+                    <a href="/contatti" style="display: inline-block; background: #f59e0b; color: white; padding: 8px 16px; text-decoration: none; border-radius: 6px; font-weight: 500; transition: background 0.3s ease;">🙋‍♂️ Candidati come volontario</a>
+                </div>
+            </div>
+            <?php endif; ?>
+            <!-- /wp:html -->
+
+            <!-- PROGRESS BAR PER RACCOLTA FONDI (solo se necessario) -->
+            <!-- wp:html -->
+            <?php
+            $category = get_post_meta(get_the_ID(), 'project_category', true);
+            $goal_amount = get_post_meta(get_the_ID(), 'goal_amount', true);
+            $current_amount = get_post_meta(get_the_ID(), 'current_amount', true);
+
+            if ($category === 'raccolta-fondi' && $goal_amount):
+                $current_amount = $current_amount ?: 0;
+                $percentage = min(($current_amount / $goal_amount) * 100, 100);
+                $current_formatted = number_format($current_amount, 0, ',', '.');
+                $goal_formatted = number_format($goal_amount, 0, ',', '.');
+            ?>
+            <div class="project-single-progress" style="margin: 40px 0; padding: 30px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 16px; border: 1px solid #e2e8f0;">
+                <div class="progress-container" style="max-width: 600px; margin: 0 auto; text-align: center;">
+                    <div class="progress-text-large" style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: 8px; margin-bottom: 20px; font-size: 18px;">
+                        <span class="current-amount" style="font-size: 2.5em; font-weight: bold; color: var(--wp--preset--color--blu-primario, #2563eb);"><?php echo $current_formatted; ?>€</span>
+                        <span class="progress-label" style="font-size: 1em; color: var(--wp--preset--color--grigio-testo, #6b7280); font-weight: 500;">Raccolti fino ad ora su</span>
+                        <span class="goal-amount" style="font-size: 1.5em; font-weight: bold; color: var(--wp--preset--color--nero-testo, #1f2937);"><?php echo $goal_formatted; ?>€</span>
+                        <span class="total-label" style="font-size: 1em; color: var(--wp--preset--color--grigio-testo, #6b7280); font-weight: 500;">Totali</span>
+                    </div>
+                    <div class="progress-bar-large" style="width: 100%; height: 16px; background: #e5e7eb; border-radius: 8px; overflow: hidden; position: relative; box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);">
+                        <div class="progress-fill-large" style="height: 100%; background: linear-gradient(90deg, #3b82f6, #1e40af); border-radius: 8px; transition: width 1s ease-out; width: <?php echo $percentage; ?>%;"></div>
+                    </div>
+                </div>
+            </div>
+            <?php endif; ?>
+            <!-- /wp:html -->
+
         </div>
         <!-- /wp:column -->
 
-        <!-- wp:column {"width":"40%"} -->
-        <div class="wp-block-column" style="flex-basis:40%">
-            <!-- wp:group {"backgroundColor":"light","style":{"spacing":{"padding":{"top":"32px","bottom":"32px","left":"24px","right":"24px"}},"border":{"radius":"12px"}},"layout":{"type":"constrained"}} -->
-            <div class="wp-block-group has-light-background-color has-background" style="border-radius:12px;padding-top:32px;padding-right:24px;padding-bottom:32px;padding-left:24px">
-                <!-- wp:heading {"level":3,"fontSize":"large","textColor":"verde-primario","style":{"spacing":{"margin":{"bottom":"24px"}}}} -->
-                <h3 class="wp-block-heading has-verde-primario-color has-text-color has-large-font-size" style="margin-bottom:24px">Progresso Raccolta</h3>
+        <!-- SIDEBAR COLUMN -->
+        <!-- wp:column {"width":"30%","style":{"spacing":{"blockGap":"30px"}}} -->
+        <div class="wp-block-column" style="flex-basis:30%">
+
+            <!-- SHARE SECTION -->
+            <!-- wp:group {"backgroundColor":"grigio-chiaro","style":{"spacing":{"padding":{"top":"24px","bottom":"24px","left":"24px","right":"24px"}},"border":{"radius":"12px"}},"layout":{"type":"constrained"}} -->
+            <div class="wp-block-group has-grigio-chiaro-background-color has-background" style="border-radius:12px;padding-top:24px;padding-right:24px;padding-bottom:24px;padding-left:24px">
+                <!-- wp:heading {"level":3,"fontSize":"large","textColor":"nero-testo","style":{"spacing":{"margin":{"bottom":"16px"}}}} -->
+                <h3 class="wp-block-heading has-nero-testo-color has-text-color has-large-font-size" style="margin-bottom:16px">Condividi sui social</h3>
                 <!-- /wp:heading -->
 
-                <!-- wp:pronti-qua/project-progress {"projectTitle":"Onde di Speranza","currentAmount":85000,"targetAmount":120000,"barColor":"#379db2","backgroundColor":"#f8fafc"} /-->
-
-                <!-- wp:separator {"style":{"spacing":{"margin":{"top":"32px","bottom":"32px"}}}} -->
-                <hr class="wp-block-separator" style="margin-top:32px;margin-bottom:32px"/>
-                <!-- /wp:separator -->
-
-                <!-- wp:heading {"level":3,"fontSize":"large","textColor":"verde-primario","style":{"spacing":{"margin":{"bottom":"16px"}}}} -->
-                <h3 class="wp-block-heading has-verde-primario-color has-text-color has-large-font-size" style="margin-bottom:16px">Aggiornamenti</h3>
-                <!-- /wp:heading -->
-
-                <!-- wp:group {"style":{"spacing":{"blockGap":"16px"}},"layout":{"type":"constrained"}} -->
-                <div class="wp-block-group">
-                    <!-- wp:group {"backgroundColor":"white","style":{"spacing":{"padding":{"top":"16px","bottom":"16px","left":"16px","right":"16px"}},"border":{"radius":"8px"}},"layout":{"type":"constrained"}} -->
-                    <div class="wp-block-group has-white-background-color has-background" style="border-radius:8px;padding-top:16px;padding-right:16px;padding-bottom:16px;padding-left:16px">
-                        <!-- wp:paragraph {"fontSize":"small","style":{"spacing":{"margin":{"bottom":"4px"}}}} -->
-                        <p class="has-small-font-size" style="margin-bottom:4px"><strong>15 Gennaio 2024</strong></p>
-                        <!-- /wp:paragraph -->
-                        <!-- wp:paragraph {"fontSize":"small"} -->
-                        <p class="has-small-font-size">Raggiunto il 70% dell'obiettivo! Grazie a tutti i sostenitori.</p>
-                        <!-- /wp:paragraph -->
-                    </div>
-                    <!-- /wp:group -->
-
-                    <!-- wp:group {"backgroundColor":"white","style":{"spacing":{"padding":{"top":"16px","bottom":"16px","left":"16px","right":"16px"}},"border":{"radius":"8px"}},"layout":{"type":"constrained"}} -->
-                    <div class="wp-block-group has-white-background-color has-background" style="border-radius:8px;padding-top:16px;padding-right:16px;padding-bottom:16px;padding-left:16px">
-                        <!-- wp:paragraph {"fontSize":"small","style":{"spacing":{"margin":{"bottom":"4px"}}}} -->
-                        <p class="has-small-font-size" style="margin-bottom:4px"><strong>1 Gennaio 2024</strong></p>
-                        <!-- /wp:paragraph -->
-                        <!-- wp:paragraph {"fontSize":"small"} -->
-                        <p class="has-small-font-size">Lancio ufficiale del progetto Onde di Speranza.</p>
-                        <!-- /wp:paragraph -->
-                    </div>
-                    <!-- /wp:group -->
-                </div>
-                <!-- /wp:group -->
-            </div>
-            <!-- /wp:group -->
-
-            <!-- wp:group {"backgroundColor":"white","style":{"spacing":{"padding":{"top":"24px","bottom":"24px","left":"24px","right":"24px"},"margin":{"top":"24px"}},"border":{"radius":"12px","width":"1px","color":"#e5e7eb"}},"layout":{"type":"constrained"}} -->
-            <div class="wp-block-group has-border-color has-white-background-color has-background" style="border-color:#e5e7eb;border-width:1px;border-radius:12px;margin-top:24px;padding-top:24px;padding-right:24px;padding-bottom:24px;padding-left:24px">
-                <!-- wp:heading {"level":3,"fontSize":"medium","textColor":"azzurro-secondario","style":{"spacing":{"margin":{"bottom":"16px"}}}} -->
-                <h3 class="wp-block-heading has-azzurro-secondario-color has-text-color has-medium-font-size" style="margin-bottom:16px">Condividi il Progetto</h3>
-                <!-- /wp:heading -->
-
-                <!-- wp:social-links {"size":"has-normal-icon-size","className":"is-style-logos-only"} -->
-                <ul class="wp-block-social-links has-normal-icon-size is-style-logos-only">
-                    <!-- wp:social-link {"url":"#","service":"facebook"} /-->
-                    <!-- wp:social-link {"url":"#","service":"twitter"} /-->
-                    <!-- wp:social-link {"url":"#","service":"linkedin"} /-->
-                    <!-- wp:social-link {"url":"#","service":"whatsapp"} /-->
+                <!-- wp:social-links {"size":"has-large-icon-size","className":"is-style-logos-only","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"left"}} -->
+                <ul class="wp-block-social-links has-large-icon-size is-style-logos-only">
+                    <!-- wp:social-link {"url":"#","service":"whatsapp","className":"social-share-btn"} /-->
+                    <!-- wp:social-link {"url":"#","service":"twitter","className":"social-share-btn"} /-->
+                    <!-- wp:social-link {"url":"#","service":"instagram","className":"social-share-btn"} /-->
+                    <!-- wp:social-link {"url":"#","service":"facebook","className":"social-share-btn"} /-->
+                    <!-- wp:social-link {"url":"#","service":"linkedin","className":"social-share-btn"} /-->
                 </ul>
                 <!-- /wp:social-links -->
             </div>
             <!-- /wp:group -->
+
+            <!-- PROJECT META INFO (caricata direttamente dal PHP) -->
+            <!-- wp:group {"backgroundColor":"bianco","style":{"spacing":{"padding":{"top":"24px","bottom":"24px","left":"24px","right":"24px"}},"border":{"radius":"12px","width":"1px","color":"#e5e7eb"}},"layout":{"type":"constrained"}} -->
+            <div class="wp-block-group has-border-color has-bianco-background-color has-background" style="border-color:#e5e7eb;border-width:1px;border-radius:12px;padding-top:24px;padding-right:24px;padding-bottom:24px;padding-left:24px">
+                <!-- wp:heading {"level":3,"fontSize":"medium","textColor":"nero-testo","style":{"spacing":{"margin":{"bottom":"16px"}}}} -->
+                <h3 class="wp-block-heading has-nero-testo-color has-text-color has-medium-font-size" style="margin-bottom:16px">Dettagli Progetto</h3>
+                <!-- /wp:heading -->
+
+                <!-- wp:html -->
+                <div class="project-meta-details" style="display: flex; flex-direction: column; gap: 12px;">
+                    <?php
+                    // Status
+                    $status = get_post_meta(get_the_ID(), 'project_status', true) ?: 'attivo';
+                    $status_labels = [
+                        'attivo' => 'Attivo',
+                    'completato' => 'Completato',
+                    'in-pausa' => 'In Pausa',
+                    'pianificazione' => 'In Pianificazione'
+                    ];
+                    $status_classes = [
+                    'attivo' => 'background: #dcfce7; color: #166534;',
+                    'completato' => 'background: #dbeafe; color: #1e40af;',
+                    'in-pausa' => 'background: #f3f4f6; color: #374151;',
+                    'pianificazione' => 'background: #fef3c7; color: #92400e;'
+                    ];
+                    ?>
+                    <div class="meta-item" style="font-size: 14px; line-height: 1.4; padding: 8px 0; border-bottom: 1px solid #f3f4f6;">
+                        <strong style="color: var(--wp--preset--color--nero-testo); margin-right: 8px; min-width: 80px; display: inline-block;">Stato:</strong>
+                        <span style="padding: 2px 8px; border-radius: 12px; font-size: 12px; font-weight: 500; text-transform: uppercase; <?php echo $status_classes[$status] ?? ''; ?>">
+                            <?php echo esc_html($status_labels[$status] ?? $status); ?>
+                        </span>
+                    </div>
+
+                    <?php
+                    // Categoria
+                    $category = get_post_meta(get_the_ID(), 'project_category', true);
+                    if ($category):
+                        $category_labels = [
+                            'raccolta-fondi' => 'Raccolta Fondi',
+                    'supporto' => 'Supporto',
+                    'assistenza' => 'Assistenza',
+                    'formazione' => 'Formazione',
+                    'sensibilizzazione' => 'Sensibilizzazione'
+                    ];
+                    ?>
+                    <div class="meta-item" style="font-size: 14px; line-height: 1.4; padding: 8px 0; border-bottom: 1px solid #f3f4f6;">
+                        <strong style="color: var(--wp--preset--color--nero-testo); margin-right: 8px; min-width: 80px; display: inline-block;">Categoria:</strong>
+                        <span style="color: var(--wp--preset--color--grigio-testo);"><?php echo esc_html($category_labels[$category] ?? str_replace('-', ' ', $category)); ?></span>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php
+                    // Data inizio
+                    $start_date = get_post_meta(get_the_ID(), 'project_start_date', true);
+                    if ($start_date):
+                    ?>
+                    <div class="meta-item" style="font-size: 14px; line-height: 1.4; padding: 8px 0; border-bottom: 1px solid #f3f4f6;">
+                        <strong style="color: var(--wp--preset--color--nero-testo); margin-right: 8px; min-width: 80px; display: inline-block;">Inizio:</strong>
+                        <span style="color: var(--wp--preset--color--grigio-testo);"><?php echo date_i18n('j F Y', strtotime($start_date)); ?></span>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php
+                    // Data fine
+                    $end_date = get_post_meta(get_the_ID(), 'project_end_date', true);
+                    if ($end_date):
+                    ?>
+                    <div class="meta-item" style="font-size: 14px; line-height: 1.4; padding: 8px 0; border-bottom: 1px solid #f3f4f6;">
+                        <strong style="color: var(--wp--preset--color--nero-testo); margin-right: 8px; min-width: 80px; display: inline-block;">Fine prevista:</strong>
+                        <span style="color: var(--wp--preset--color--grigio-testo);"><?php echo date_i18n('j F Y', strtotime($end_date)); ?></span>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php
+                    // Responsabile
+                    $manager = get_post_meta(get_the_ID(), 'project_manager', true);
+                    if ($manager):
+                    ?>
+                    <div class="meta-item" style="font-size: 14px; line-height: 1.4; padding: 8px 0; border-bottom: 1px solid #f3f4f6;">
+                        <strong style="color: var(--wp--preset--color--nero-testo); margin-right: 8px; min-width: 80px; display: inline-block;">Responsabile:</strong>
+                        <span style="color: var(--wp--preset--color--grigio-testo);"><?php echo esc_html($manager); ?></span>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php
+                    // Beneficiari
+                    $beneficiaries = get_post_meta(get_the_ID(), 'project_beneficiaries', true);
+                    if ($beneficiaries):
+                    ?>
+                    <div class="meta-item" style="font-size: 14px; line-height: 1.4; padding: 8px 0;">
+                        <strong style="color: var(--wp--preset--color--nero-testo); margin-right: 8px; min-width: 80px; display: inline-block;">Beneficiari:</strong>
+                        <span style="color: var(--wp--preset--color--grigio-testo);"><?php echo esc_html($beneficiaries); ?></span>
+                    </div>
+                    <?php endif; ?>
+                </div>
+                <!-- /wp:html -->
+            </div>
+            <!-- /wp:group -->
+
+            <!-- CTA DONAZIONE (solo per raccolta fondi) -->
+            <!-- wp:html -->
+            <?php
+            $category = get_post_meta(get_the_ID(), 'project_category', true);
+            $donation_link = get_post_meta(get_the_ID(), 'donation_link', true);
+
+            if ($category === 'raccolta-fondi'):
+                $donation_url = $donation_link ?: '/dona';
+            ?>
+            <div class="wp-block-group donation-cta-sidebar" style="background: var(--wp--preset--color--blu-primario, #2563eb); color: white; border-radius: 12px; padding: 24px; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);">
+                <h3 style="font-size: 1.125rem; margin-bottom: 12px; color: white;">Sostieni questo progetto</h3>
+                <p style="font-size: 14px; margin-bottom: 16px; color: rgba(255,255,255,0.9);">Il tuo contributo può fare la differenza per chi ne ha bisogno.</p>
+                <a href="<?php echo esc_url($donation_url); ?>" style="display: block; background: white; color: var(--wp--preset--color--blu-primario, #2563eb); padding: 10px 16px; text-decoration: none; border-radius: 6px; font-weight: 500; text-align: center; transition: all 0.3s ease;">💝 Dona ora</a>
+            </div>
+            <?php endif; ?>
+            <!-- /wp:html -->
+
         </div>
         <!-- /wp:column -->
+
     </div>
     <!-- /wp:columns -->
 
+    <!-- EVENTI LEGATI AL PROGETTO -->
     <!-- wp:group {"align":"wide","style":{"spacing":{"margin":{"top":"80px"}}},"layout":{"type":"constrained"}} -->
     <div class="wp-block-group alignwide" style="margin-top:80px">
-        <!-- wp:heading {"textAlign":"center","fontSize":"x-large","textColor":"verde-primario","style":{"spacing":{"margin":{"bottom":"32px"}}}} -->
-        <h2 class="wp-block-heading has-text-align-center has-verde-primario-color has-text-color has-x-large-font-size" style="margin-bottom:32px">Altri Progetti</h2>
+        <!-- wp:heading {"textAlign":"left","fontSize":"x-large","textColor":"nero-testo","style":{"spacing":{"margin":{"bottom":"32px"}}}} -->
+        <h2 class="wp-block-heading has-text-align-left has-nero-testo-color has-text-color has-x-large-font-size" style="margin-bottom:32px">Eventi legati a questo progetto</h2>
         <!-- /wp:heading -->
 
-        <!-- wp:query {"queryId":1,"query":{"perPage":2,"pages":0,"offset":0,"postType":"progetto","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false}} -->
+        <!-- wp:query {"queryId":2,"query":{"perPage":4,"pages":0,"offset":0,"postType":"evento","order":"asc","orderBy":"meta_value","author":"","search":"","exclude":[],"sticky":"","inherit":false,"meta_key":"event_date"}} -->
         <div class="wp-block-query">
-            <!-- wp:post-template {"layout":{"type":"grid","columnCount":2}} -->
-            <!-- wp:group {"backgroundColor":"white","style":{"spacing":{"padding":{"top":"0px","bottom":"24px","left":"0px","right":"0px"}},"border":{"radius":"12px","width":"1px","color":"#e5e7eb"}},"layout":{"type":"constrained"}} -->
-            <div class="wp-block-group has-border-color has-white-background-color has-background" style="border-color:#e5e7eb;border-width:1px;border-radius:12px;padding-top:0px;padding-right:0px;padding-bottom:24px;padding-left:0px">
+            <!-- wp:post-template {"layout":{"type":"grid","columnCount":4},"className":"related-events-grid"} -->
+            <!-- wp:group {"backgroundColor":"bianco","style":{"spacing":{"padding":{"top":"0px","bottom":"24px","left":"0px","right":"0px"}},"border":{"radius":"12px","width":"1px","color":"#e5e7eb"}},"layout":{"type":"constrained"},"className":"event-card related-card"} -->
+            <div class="wp-block-group event-card related-card has-border-color has-bianco-background-color has-background" style="border-color:#e5e7eb;border-width:1px;border-radius:12px;padding-top:0px;padding-right:0px;padding-bottom:24px;padding-left:0px">
                 <!-- wp:post-featured-image {"isLink":true,"aspectRatio":"16/9","style":{"border":{"radius":{"topLeft":"12px","topRight":"12px"}}}} /-->
 
-                <!-- wp:group {"style":{"spacing":{"padding":{"left":"24px","right":"24px","top":"20px","bottom":"0px"}}},"layout":{"type":"constrained"}} -->
-                <div class="wp-block-group" style="padding-top:20px;padding-right:24px;padding-bottom:0px;padding-left:24px">
-                    <!-- wp:post-title {"isLink":true,"fontSize":"large","textColor":"azzurro-secondario"} /-->
-                    <!-- wp:post-excerpt {"moreText":"Scopri di più →"} /-->
+                <!-- wp:group {"style":{"spacing":{"padding":{"top":"20px","bottom":"0px","left":"20px","right":"20px"}}},"layout":{"type":"constrained"}} -->
+                <div class="wp-block-group" style="padding-top:20px;padding-right:20px;padding-bottom:0px;padding-left:20px">
+                    <!-- wp:post-title {"isLink":true,"fontSize":"medium","textColor":"nero-testo","style":{"spacing":{"margin":{"bottom":"8px"}}}} /-->
+
+                    <!-- wp:post-excerpt {"moreText":"","showMoreOnNewLine":false,"excerptLength":10,"fontSize":"small","textColor":"grigio-testo","style":{"spacing":{"margin":{"bottom":"12px"}}}} /-->
+
+                    <!-- wp:paragraph {"fontSize":"x-small","textColor":"grigio-testo","style":{"spacing":{"margin":{"bottom":"0px"}}}} -->
+                    <p class="has-grigio-testo-color has-text-color has-x-small-font-size" style="margin-bottom:0px">Breve descrizione dell'evento collegato al progetto</p>
+                    <!-- /wp:paragraph -->
                 </div>
                 <!-- /wp:group -->
             </div>
             <!-- /wp:group -->
             <!-- /wp:post-template -->
+
+            <!-- wp:query-no-results -->
+            <!-- wp:paragraph {"textAlign":"center","textColor":"grigio-testo","fontSize":"medium"} -->
+            <p class="has-text-align-center has-grigio-testo-color has-text-color has-medium-font-size">Non ci sono eventi collegati a questo progetto al momento.</p>
+            <!-- /wp:paragraph -->
+            <!-- /wp:query-no-results -->
         </div>
         <!-- /wp:query -->
     </div>
     <!-- /wp:group -->
+
+    <!-- CALL TO ACTION FINALE -->
+    <!-- wp:group {"align":"full","style":{"spacing":{"padding":{"top":"60px","bottom":"60px","left":"20px","right":"20px"},"margin":{"top":"80px"}}},"backgroundColor":"grigio-chiaro","layout":{"type":"constrained","contentSize":"800px"}} -->
+    <div class="wp-block-group alignfull has-grigio-chiaro-background-color has-background" style="margin-top:80px;padding-top:60px;padding-right:20px;padding-bottom:60px;padding-left:20px">
+        <!-- wp:heading {"textAlign":"center","fontSize":"x-large","textColor":"nero-testo","style":{"spacing":{"margin":{"bottom":"16px"}}}} -->
+        <h2 class="wp-block-heading has-text-align-center has-nero-testo-color has-text-color has-x-large-font-size" style="margin-bottom:16px">Vuoi saperne di più?</h2>
+        <!-- /wp:heading -->
+
+        <!-- wp:paragraph {"textAlign":"center","fontSize":"medium","textColor":"grigio-testo","style":{"spacing":{"margin":{"bottom":"32px"}}}} -->
+        <p class="has-text-align-center has-grigio-testo-color has-text-color has-medium-font-size" style="margin-bottom:32px">Contattaci per maggiori informazioni su questo progetto o per scoprire come puoi contribuire.</p>
+        <!-- /wp:paragraph -->
+
+        <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center","flexWrap":"wrap"}} -->
+        <div class="wp-block-buttons">
+            <!-- wp:button {"backgroundColor":"blu-primario","fontSize":"medium","style":{"border":{"radius":"8px"},"spacing":{"padding":{"left":"24px","right":"24px","top":"12px","bottom":"12px"}}}} -->
+            <div class="wp-block-button has-custom-font-size has-medium-font-size">
+                <a class="wp-block-button__link has-blu-primario-background-color has-background wp-element-button" href="/contatti" style="border-radius:8px;padding-top:12px;padding-right:24px;padding-bottom:12px;padding-left:24px">📞 Contattaci</a>
+            </div>
+            <!-- /wp:button -->
+
+            <!-- wp:button {"backgroundColor":"transparent","textColor":"blu-primario","fontSize":"medium","style":{"border":{"radius":"8px","width":"2px","color":"var:preset|color|blu-primario"},"spacing":{"padding":{"left":"24px","right":"24px","top":"12px","bottom":"12px"}}}} -->
+            <div class="wp-block-button has-custom-font-size has-medium-font-size">
+                <a class="wp-block-button__link has-blu-primario-color has-transparent-background-color has-text-color has-background has-border-color wp-element-button" href="/progetti" style="border-color:var(--wp--preset--color--blu-primario);border-radius:8px;border-width:2px;padding-top:12px;padding-right:24px;padding-bottom:12px;padding-left:24px">👀 Altri progetti</a>
+            </div>
+            <!-- /wp:button -->
+        </div>
+        <!-- /wp:buttons -->
+    </div>
+    <!-- /wp:group -->
+
 </main>
 <!-- /wp:group -->
 

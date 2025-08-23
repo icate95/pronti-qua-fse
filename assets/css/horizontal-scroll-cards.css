@@ -1,0 +1,207 @@
+/* ===== APPROCCIO SINGOLO CONTAINER ===== */
+/* Trasforma il grid desktop in scroll mobile mantenendo un solo template */
+
+/* Desktop: Grid normale */
+@media (min-width: 769px) {
+    .projects-grid-desktop,
+    .events-grid-desktop {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+    }
+
+    .project-card,
+    .event-card {
+        height: 100%;
+        transition: all 0.3s ease;
+    }
+
+    .project-card:hover,
+    .event-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Mobile: Trasforma grid in scroll orizzontale */
+@media (max-width: 768px) {
+
+    /* Il container padre deve permettere overflow */
+    .projects-container-desktop,
+    .events-container-desktop {
+        position: relative;
+        padding: 0;
+    }
+
+    /* Trasforma il grid in flex scroll */
+    .projects-grid-desktop,
+    .events-grid-desktop {
+        display: flex !important;
+        gap: 16px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding: 0 20px;
+        margin: 0 -20px;
+
+        /* Scrollbar styling */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+    }
+
+    .projects-grid-desktop::-webkit-scrollbar,
+    .events-grid-desktop::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .projects-grid-desktop::-webkit-scrollbar-track,
+    .events-grid-desktop::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+        margin: 0 20px;
+    }
+
+    .projects-grid-desktop::-webkit-scrollbar-thumb,
+    .events-grid-desktop::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 3px;
+    }
+
+    .projects-grid-desktop::-webkit-scrollbar-thumb:hover,
+    .events-grid-desktop::-webkit-scrollbar-thumb:hover {
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    /* Le cards devono avere larghezza fissa */
+    .project-card,
+    .event-card {
+        min-width: 280px;
+        flex-shrink: 0;
+        height: auto;
+    }
+
+    /* Scroll snap */
+    .projects-grid-desktop,
+    .events-grid-desktop {
+        scroll-snap-type: x mandatory;
+    }
+
+    .project-card,
+    .event-card {
+        scroll-snap-align: start;
+    }
+
+    /* Indicatori di scroll */
+    .scroll-indicator {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 18px;
+        color: #333;
+        z-index: 10;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .scroll-indicator:hover {
+        background: white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .scroll-left {
+        left: 10px;
+    }
+
+    .scroll-right {
+        right: 10px;
+    }
+
+    .scroll-indicator.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+/* Tablet: 2-3 colonne */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .projects-grid-desktop,
+    .events-grid-desktop {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 900px) {
+    .projects-grid-desktop,
+    .events-grid-desktop {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ===== STILI COMUNI ===== */
+
+.project-card .wp-block-post-featured-image img,
+.event-card .wp-block-post-featured-image img {
+    object-fit: cover;
+    width: 100%;
+    height: 200px;
+}
+
+.project-card .wp-block-post-title,
+.event-card .wp-block-post-title {
+    min-height: 2.5em;
+    line-height: 1.25;
+}
+
+.project-card .wp-block-post-excerpt,
+.event-card .wp-block-post-excerpt {
+    min-height: 3em;
+    overflow: hidden;
+}
+
+/* Focus e accessibilità */
+.project-card:focus-within,
+.event-card:focus-within {
+    outline: 2px solid var(--wp--preset--color--blu-primario, #2563eb);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-card,
+    .event-card {
+        transition: none;
+    }
+
+    .projects-grid-desktop,
+    .events-grid-desktop {
+        scroll-behavior: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .wp-block-post-template {
+        display: flex !important;
+        gap: 16px;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        padding: 0 20px;
+        margin: 0 20px;
+        scroll-snap-type: x mandatory;
+    }
+
+    .wp-block-post-template > * {
+        min-width: 280px !important;
+        max-width: 100%;
+        flex-shrink: 0 !important;
+        scroll-snap-align: start;
+    }
+}

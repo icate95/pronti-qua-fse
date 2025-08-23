@@ -1,0 +1,227 @@
+/* ===== SINGLE PROJECT PAGE STYLING ===== */
+
+/* Date Badge */
+.project-date-badge {
+    display: inline-block;
+    background: #f3f4f6;
+    color: #6b7280;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Progress Bar Large (for single project) */
+.project-single-progress {
+    margin: 40px 0;
+    padding: 30px;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+}
+
+.progress-container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.progress-text-large {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.current-amount {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--wp--preset--color--blu-primario);
+}
+
+.goal-amount {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--wp--preset--color--nero-testo);
+}
+
+.progress-label,
+.total-label {
+    font-size: 1em;
+    color: var(--wp--preset--color--grigio-testo);
+    font-weight: 500;
+}
+
+.progress-bar-large {
+    width: 100%;
+    height: 16px;
+    background: #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-fill-large {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #1e40af);
+    border-radius: 8px;
+    transition: width 1s ease-out;
+    position: relative;
+}
+
+.progress-fill-large::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Sidebar Styling */
+.donation-cta-sidebar {
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    transition: all 0.3s ease;
+}
+
+.donation-cta-sidebar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
+}
+
+/* Related Events Grid */
+.related-events-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+@media (max-width: 1024px) {
+    .related-events-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .related-events-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.related-card {
+    transition: all 0.3s ease;
+}
+
+.related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Social Sharing */
+.wp-block-social-links.is-style-logos-only .wp-block-social-link {
+    transition: all 0.3s ease;
+}
+
+.wp-block-social-links.is-style-logos-only .wp-block-social-link:hover {
+    transform: translateY(-2px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    /* Stack columns on mobile */
+    .wp-block-columns {
+        flex-direction: column;
+    }
+
+    .wp-block-column[style*="70%"],
+    .wp-block-column[style*="30%"] {
+        flex-basis: 100% !important;
+    }
+
+    /* Adjust progress bar on mobile */
+    .progress-text-large {
+        font-size: 16px;
+    }
+
+    .current-amount {
+        font-size: 2em;
+    }
+
+    .goal-amount {
+        font-size: 1.2em;
+    }
+
+    .project-single-progress {
+        padding: 20px;
+        margin: 30px 0;
+    }
+
+    /* Sidebar adjustments */
+    .wp-block-column:last-child {
+        margin-top: 40px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .donation-cta-sidebar,
+    .wp-block-social-links {
+        display: none;
+    }
+
+    .project-single-progress {
+        background: white;
+        border: 1px solid #ccc;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .project-date-badge {
+        border: 2px solid currentColor;
+    }
+
+    .progress-bar-large {
+        border: 2px solid #000;
+    }
+
+    .project-single-progress {
+        border: 2px solid #000;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .progress-fill-large {
+        transition: none;
+    }
+
+    .progress-fill-large::after {
+        animation: none;
+    }
+
+    .donation-cta-sidebar,
+    .related-card,
+    .wp-block-social-link {
+        transition: none;
+    }
+
+    .donation-cta-sidebar:hover,
+    .related-card:hover,
+    .wp-block-social-link:hover {
+        transform: none;
+    }
+}

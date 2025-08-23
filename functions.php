@@ -1,7 +1,6 @@
 <?php
 /**
  * Pronti Qua ODV Theme Functions
- * Adds support for fixed navigation and enhanced WordPress navigation features
  */
 
 // Prevent direct access
@@ -10,12 +9,41 @@ if (!defined('ABSPATH')) {
 }
 
 /**
+ * Include dei file necessari
+ */
+require_once get_template_directory() . '/inc/custom-post-types.php';
+require_once get_template_directory() . '/inc/custom-blocks.php';
+require_once get_template_directory() . '/inc/block-patterns.php';
+
+
+/**
  * Enqueue theme styles and scripts
  */
 function pronti_qua_enqueue_assets() {
     wp_enqueue_style(
         'pronti-qua-style',
         get_template_directory_uri() . '/assets/css/theme.css',
+        array(),
+        wp_get_theme()->get('Version')
+    );
+
+    wp_enqueue_style(
+        'pronti-qua-scroll-card-style',
+        get_template_directory_uri() . '/assets/css/horizontal-scroll-cards.css',
+        array(),
+        wp_get_theme()->get('Version')
+    );
+
+    wp_enqueue_style(
+        'single-project-style',
+        get_template_directory_uri() . '/assets/css/single-project-style.css',
+        array(),
+        wp_get_theme()->get('Version')
+    );
+
+   wp_enqueue_style(
+        'pronti-qua-archive',
+        get_template_directory_uri() . '/assets/css/archive-styles.css',
         array(),
         wp_get_theme()->get('Version')
     );
@@ -32,6 +60,30 @@ function pronti_qua_enqueue_assets() {
     wp_enqueue_script(
         'pronti-qua-navigation',
         get_template_directory_uri() . '/assets/js/navigation.js',
+        array(),
+        wp_get_theme()->get('Version'),
+        true
+    );
+
+     wp_enqueue_script(
+        'pronti-qua-card-scroll',
+        get_template_directory_uri() . '/assets/js/horizontal-scroll-cards.js',
+        array(),
+        wp_get_theme()->get('Version'),
+        true
+    );
+
+     wp_enqueue_script(
+        'single-project-interactions',
+        get_template_directory_uri() . '/assets/js/single-project-interactions.js',
+        array(),
+        wp_get_theme()->get('Version'),
+        true
+    );
+
+     wp_enqueue_script(
+        'pronti-qua-archive-js',
+        get_template_directory_uri() . '/assets/js/archive-interactions.js',
         array(),
         wp_get_theme()->get('Version'),
         true
@@ -376,9 +428,11 @@ add_action('wp_head', 'pronti_qua_navigation_schema');
 function pronti_qua_preload_navigation_resources() {
     // Preload navigation CSS
     echo '<link rel="preload" href="' . get_template_directory_uri() . '/assets/css/fixed-navigation.css" as="style">';
+    echo '<link rel="preload" href="' . get_template_directory_uri() . '/assets/css/horizontal-scroll-cards.css" as="style">';
 
     // Preload navigation JS
     echo '<link rel="preload" href="' . get_template_directory_uri() . '/assets/js/navigation.js" as="script">';
+    echo '<link rel="preload" href="' . get_template_directory_uri() . '/assets/js/horizontal-scroll-cards.js" as="script">';
 
     // Preload logo if set
     $custom_logo_id = get_theme_mod('custom_logo');
