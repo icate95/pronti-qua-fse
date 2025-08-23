@@ -12,6 +12,7 @@ if (function_exists('wp_is_block_theme') && wp_is_block_theme()) {
 
 // Fallback per temi classici (non dovrebbe mai essere raggiunto)
 get_header();
+
 echo '<main>';
 if (have_posts()) {
     while (have_posts()) {

@@ -1,19 +1,51 @@
-<!-- wp:group {"tagName":"header","className":"site-header","style":{"spacing":{"padding":{"top":"16px","bottom":"16px"}}},"backgroundColor":"white","layout":{"type":"constrained"}} -->
-<header class="wp-block-group site-header has-white-background-color has-background"
-        style="padding-top:16px;padding-bottom:16px">
-    <!-- wp:group {"align":"wide","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
-    <div class="wp-block-group alignwide">
-        <!-- wp:site-logo {"width":120,"shouldSyncIcon":false} /-->
+<!-- wp:group {"tagName":"header","className":"site-header fixed-header","style":{"spacing":{"padding":{"top":"0","bottom":"0"}},"position":{"type":"sticky","top":"0px"}},"backgroundColor":"white","layout":{"type":"constrained"},"fontSize":"normal"} -->
+<header class="wp-block-group site-header fixed-header has-white-background-color has-background has-normal-font-size"
+        style="padding-top:0;padding-bottom:0;position:sticky;top:0px">
 
-        <!-- wp:navigation {"ref":892,"textColor":"dark","overlayBackgroundColor":"white","overlayTextColor":"dark","className":"wp-block-navigation main-navigation has-dark-color has-text-color has-normal-font-size","fontSize":"normal","layout":{"type":"flex","setCascadingProperties":true,"justifyContent":"right"},"ariaLabel":"Menu principale"} /-->
+    <!-- wp:group {"align":"wide","className":"header-content","style":{"spacing":{"padding":{"top":"16px","bottom":"16px","left":"20px","right":"20px"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between","verticalAlignment":"center"}} -->
+    <div class="wp-block-group alignwide header-content" style="padding-top:16px;padding-bottom:16px;padding-left:20px;padding-right:20px">
 
-        <!-- wp:buttons {"className":"header-cta-buttons","style":{"spacing":{"margin":{"left":"24px"}}}} -->
-        <div class="wp-block-buttons header-cta-buttons" style="margin-left:24px">
-            <!-- wp:button {"backgroundColor":"rosa-accento","textColor":"white","className":"is-style-fill","fontSize":"small"} -->
-            <div class="wp-block-button is-style-fill"><a
-                    class="wp-block-button__link has-white-color has-rosa-accento-background-color has-text-color has-background has-small-font-size has-custom-font-size wp-element-button"
-                    href="/dona">Sostienici</a></div>
-            <!-- /wp:button --></div>
-        <!-- /wp:buttons --></div>
-    <!-- /wp:group --></header>
+        <!-- wp:group {"className":"logo-section","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+        <div class="wp-block-group logo-section">
+            <!-- wp:site-logo {"width":120,"shouldSyncIcon":false,"className":"site-logo-header"} /-->
+        </div>
+        <!-- /wp:group -->
+
+        <!-- Desktop Navigation & CTA -->
+        <!-- wp:group {"className":"desktop-nav-section","style":{"spacing":{"gap":"24px"}},"layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"}} -->
+        <div class="wp-block-group desktop-nav-section" style="gap:24px">
+
+            <!-- wp:navigation {"ref":892,"textColor":"dark","overlayBackgroundColor":"white","overlayTextColor":"dark","className":"main-navigation desktop-only","fontSize":"normal","layout":{"type":"flex","setCascadingProperties":true,"justifyContent":"center","orientation":"horizontal","flexWrap":"nowrap"},"ariaLabel":"Menu principale"} /-->
+
+            <!-- wp:buttons {"className":"header-cta-buttons desktop-only"} -->
+            <div class="wp-block-buttons header-cta-buttons desktop-only">
+                <!-- wp:button {"backgroundColor":"rosa-accento","textColor":"white","className":"is-style-fill cta-sostienici","fontSize":"small"} -->
+                <div class="wp-block-button is-style-fill cta-sostienici">
+                    <a class="wp-block-button__link has-white-color has-rosa-accento-background-color has-text-color has-background has-small-font-size wp-element-button" href="/dona">Sostienici</a>
+                </div>
+                <!-- /wp:button -->
+            </div>
+            <!-- /wp:buttons -->
+        </div>
+        <!-- /wp:group -->
+
+        <!-- Mobile Navigation -->
+        <!-- wp:group {"className":"mobile-nav-section mobile-only","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center","justifyContent":"space-between"}} -->
+        <div class="wp-block-group mobile-nav-section mobile-only">
+
+            <!-- wp:button {"backgroundColor":"rosa-accento","textColor":"white","className":"is-style-fill mobile-cta-center","fontSize":"small"} -->
+            <div class="wp-block-button is-style-fill mobile-cta-center">
+                <a class="wp-block-button__link has-white-color has-rosa-accento-background-color has-text-color has-background has-small-font-size wp-element-button" href="/dona">Sostienici</a>
+            </div>
+            <!-- /wp:button -->
+
+            <!-- wp:navigation {"ref":892,"textColor":"dark","overlayBackgroundColor":"white","overlayTextColor":"dark","className":"main-navigation mobile-hamburger","fontSize":"normal","layout":{"type":"flex","setCascadingProperties":true,"justifyContent":"right"},"ariaLabel":"Menu mobile","hasIcon":true} /-->
+
+        </div>
+        <!-- /wp:group -->
+
+    </div>
+    <!-- /wp:group -->
+
+</header>
 <!-- /wp:group -->
